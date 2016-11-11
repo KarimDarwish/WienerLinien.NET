@@ -49,7 +49,6 @@ namespace WienerLinienApi.Test
             var data = await news.GetNewsInformationListAsync(new Parameters.NewsParameters());
             Assert.IsFalse(data.DataObj.IsNull());
         }
-        //failed tests
         [TestMethod]
         [ExpectedException(typeof(RealtimeError))]
         public async Task GetTrafficDataWithInvalidKey()
