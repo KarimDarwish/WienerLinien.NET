@@ -12,7 +12,7 @@ namespace WienerLinienApi.Information
         /// where you can access the information.
         /// </summary>
         /// <returns>List of Station objects</returns>
-        public async Task<List<Station>> GetAllStationsAsync()
+        public static async Task<List<Station>> GetAllStationsAsync()
         {
             var json = await new JsonGenerator.JsonGenerator().GetJsonAsync();
             return JsonConvert.DeserializeObject<List<Station>>(json);

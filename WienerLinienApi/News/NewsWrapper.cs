@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using WienerLinienApi.RealtimeData;
+using Newtonsoft.Json;
+using static WienerLinienApi.Model.Parameters;
 
 namespace WienerLinienApi.News
 {
@@ -12,7 +13,7 @@ namespace WienerLinienApi.News
             "http://www.wienerlinien.at/ogd_realtime/newsList?{0}{1}{2}&sender={3}";
 
         private HttpClient client;
-        private string apiKey;
+        private readonly string apiKey;
 
         public NewsWrapper(WienerLinienContext context)
         {
@@ -20,40 +21,36 @@ namespace WienerLinienApi.News
             apiKey = context.ApiKey;
             client = new HttpClient();
         }
-        public Task<List<Model.News>> GetNewsInformationAsync()
+        public async Task<Model.News> GetNewsInformationListAsync(NewsParameters parameters)
         {
+            #region "Parameter check"
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+
+            #endregion
+            var url = parameters.GetStringFromParameters(NewsApiLink, apiKey);
+            if (client == null)
+                client = new HttpClient();
+
+            var response =  await client.GetStringAsync(url).ConfigureAwait(false);
+            var data = JsonConvert.DeserializeObject<Model.News>(response.ToString());
+
+
+            return response != null ? JsonConvert.DeserializeObject<Model.News>(response) : null;
 
         }
-    }
 
-    public class Parameters: IParameter
-    {
-        public List<string> RelatedLines { get; set; }
-        public List<string> RelatedStops { get; set; }
-
-        public List<NewsCategories> Names { get; set; }
-        public enum NewsCategories { News, Aufzugsservice }
-
-        public string GetStringFromParameters(string url, string apiKey)
+        public async Task<Model.News> GetNewsInformationAsync(NewsParameters parameters)
         {
-            var relatedLines = string.Empty;
-            var relatedStops = string.Empty;
-            if (RelatedLines != null && RelatedLines.Count != 0)
-            {
-                relatedLines = string.Join("&", RelatedLines.Select(r => $"relatedLine={r}"));
-            }
-            if (RelatedStops != null && RelatedStops.Count != 0)
-            {
-                relatedStops = string.Join("&", RelatedStops.Select(r => $"relatedStop={r}"));
-            }
-            var names = new List<string>() { "" };
-            if (Names != null && Names.Count != 0)
-            {
-                names.AddRange(Names.Select(item => "&name=" + item.ToString().ToLower()));
-            }
+            #region "Parameter check"
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
 
-            var result = string.Join("", names.ToArray());
-            return string.Format(url, relatedLines, relatedStops, result, apiKey);
+            #endregion
+            var url = parameters.GetStringFromParameters(NewsApiLink, apiKey);
+            if (client == null)
+                client = new HttpClient();
+
+            var response = await client.GetStringAsync(url).ConfigureAwait(false);
+            return response != null ? JsonConvert.DeserializeObject<Model.News>(response) : null;
         }
     }
 }

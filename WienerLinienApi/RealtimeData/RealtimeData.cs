@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using WienerLinienApi.Model;
 using WienerLinienApi.RealtimeData.Monitor;
 using WienerLinienApi.RealtimeData.TrafficInfo;
 
@@ -37,10 +36,15 @@ namespace WienerLinienApi.RealtimeData
                 client = new HttpClient();
 
             var response = await client.GetStringAsync(url).ConfigureAwait(false);
-            return response != null ? JsonConvert.DeserializeObject<MonitorData>(response) : null;
+            var deserialized = JsonConvert.DeserializeObject<MonitorData>(response);
+            if (deserialized.Message != null)
+            {
+                throw new RealtimeError(deserialized.Message.MessageCode);
+            }
+            return response != null ? deserialized : null;
         }
 
-        public async Task<TrafficInfoData> GetTrafficInfoListDataAsync(Parameters.TrafficInfoParameters parameters)
+        public async Task<TrafficInfoData> GetTrafficInfoDataAsync(Parameters.TrafficInfoParameters parameters)
         {
             #region "Parameter check"
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
@@ -51,89 +55,19 @@ namespace WienerLinienApi.RealtimeData
                 client = new HttpClient();
 
             var response = await client.GetStringAsync(url).ConfigureAwait(false);
-            return response != null ? JsonConvert.DeserializeObject<TrafficInfoData>(response) : null;
+            var deserialized = JsonConvert.DeserializeObject<TrafficInfoData>(response);
+            if (deserialized.Message != null)
+            {
+                throw new RealtimeError(deserialized.Message.MessageCode);
+            }
+           
+            return response != null ?deserialized : null;
         }
-        public async Task<TrafficInfoData> GetTrafficInfoDataAsync(Parameters.TrafficInfoParameters parameters)
-        {
-            #region "Parameter check"
-            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
-
-            #endregion
-            var url = parameters.GetStringFromParameters(TrafficInfoApiLink, ApiKey);
-            if (client == null)
-                client = new HttpClient();
-
-            var response = await client.GetStringAsync(url).ConfigureAwait(false);
-            return response != null ? JsonConvert.DeserializeObject<TrafficInfoData>(response) : null;
-        }
-
-
+     
     }
 
 
     #region "Parameters class"
-    public class Parameters
-    {
-        public class MonitorParameters : IParameter
-        {
-            /// <summary>
-            /// List of all RBL's you want to receive real time data for
-            /// </summary>
-            public List<int> Rbls { get; set; }
-            /// <summary>
-            /// Parameters for traffic information
-            /// </summary>
-            public enum TrafficInfo { Stoerungkurz, Stoerunglang, AufzugsInfo }
-            public List<TrafficInfo> TrafficInformation { get; set; }
-
-            public string GetStringFromParameters(string url, string apiKey)
-            {
-                var rbls = string.Join("&", Rbls.Select(r => $"rbl={r}"));
-                var trafficInfo = new List<string>() { "" };
-                if (TrafficInformation != null && TrafficInformation.Count != 0)
-                {
-                    trafficInfo.AddRange(TrafficInformation.Select(item => "&activateTrafficInfo=" + item.ToString().ToLower()));
-                }
-
-                var result = string.Join("", trafficInfo.ToArray());
-                return string.Format(url, rbls, result, apiKey);
-            }
-        }
-
-        public class TrafficInfoParameters : IParameter
-        {
-            public List<string> RelatedLines { get; set; }
-            public List<string> RelatedStops { get; set; }
-            public enum TrafficInfo { Stoerungkurz, Stoerunglang, AufzugsInfo }
-            public List<TrafficInfo> TrafficInformation { get; set; }
-
-            public string GetStringFromParameters(string url, string apiKey)
-            {
-
-                var relatedLines = string.Empty;
-                var relatedStops = string.Empty;
-                if (RelatedLines != null)
-                {
-                    relatedLines = string.Join("&", RelatedLines.Select(r => $"relatedLine={r}"));
-                }
-
-                if (RelatedStops != null)
-                {
-                    relatedStops = string.Join("&", RelatedStops.Select(r => $"relatedStop={r}"));
-                }
-                var trafficInfo = new List<string>();
-
-                if (TrafficInformation != null && TrafficInformation.Count != 0)
-                {
-                    trafficInfo.AddRange(
-                        TrafficInformation.Select(item => "&activateTrafficInfo=" + item.ToString().ToLower()));
-                }
-                var result = string.Join("", trafficInfo.ToArray());
-
-                return string.Format(url, relatedLines, relatedStops, result, apiKey);
-            }
-        }
-
-    }
+   
     #endregion
 }

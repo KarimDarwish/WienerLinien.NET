@@ -53,6 +53,7 @@
     <Compile Include="Information\Stations.cs" />
     <Compile Include="JsonGenerator\JsonGenerator.cs" />
     <Compile Include="Model\News.cs" />
+    <Compile Include="Model\Parameters.cs" />
     <Compile Include="News\NewsWrapper.cs" />
     <Compile Include="RealtimeData\IParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

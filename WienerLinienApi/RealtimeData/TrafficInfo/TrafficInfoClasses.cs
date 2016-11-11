@@ -50,5 +50,12 @@ namespace WienerLinienApi.RealtimeData.TrafficInfo
     public class TrafficInfoData
     {
         public Data Data { get; set; }
+        public Message Message { get; set; }
+    }
+    public class Message
+    {
+        public string Value { get; set; }
+        public RealtimeErrorCode MessageCode { get; set; }
+        public string ServerTime { get; set; }
     }
 }
