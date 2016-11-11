@@ -2,6 +2,6 @@
 {
     public interface IParameter
     {
-        string GetStringFromParameters(string url, string apiKey);
+         string GetStringFromParameters(string url, string apiKey);
     }
 }

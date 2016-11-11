@@ -55,13 +55,13 @@
     <Compile Include="Model\News.cs" />
     <Compile Include="News\NewsWrapper.cs" />
     <Compile Include="RealtimeData\IParameter.cs" />
-    <Compile Include="RealtimeData\Monitor\MonitorClasses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealtimeData\Monitor\MonitorClasses.cs" />
     <Compile Include="RealtimeData\RealtimeData.cs" />
-    <Compile Include="RealtimeData\RealtimeErrors.cs" />
-    <Compile Include="RealtimeData\TrafficInfo\TrafficInfoClasses.cs" />
+    <Compile Include="RealtimeData\RealtimeError.cs" />
     <Compile Include="Model\Station.cs" />
-    <Compile Include="WienerLinienApi.cs" />
+    <Compile Include="RealtimeData\TrafficInfo\TrafficInfoClasses.cs" />
+    <Compile Include="WienerLinienContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

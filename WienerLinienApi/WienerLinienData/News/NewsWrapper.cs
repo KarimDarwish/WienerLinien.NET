@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
-using WienerLinienApi.RealtimeData;
 
-namespace WienerLinienApi.News
+namespace WienerLinienApi.WienerLinienData.News
 {
     public class NewsWrapper
     {
@@ -12,27 +10,24 @@ namespace WienerLinienApi.News
             "http://www.wienerlinien.at/ogd_realtime/newsList?{0}{1}{2}&sender={3}";
 
         private HttpClient client;
-        private string apiKey;
 
-        public NewsWrapper(WienerLinienContext context)
+        public NewsWrapper()
         {
-            if (context.ApiKey == null) return;
-            apiKey = context.ApiKey;
-            client = new HttpClient();
+            
         }
-        public Task<List<Model.News>> GetNewsInformationAsync()
-        {
-
-        }
+        //public Task<List<Model.News>> GetNewsInformationAsync()
+        //{
+            
+        //}
     }
 
-    public class Parameters: IParameter
+    public class Parameters
     {
-        public List<string> RelatedLines { get; set; }
+        public List<string> RelatedLines { get; set; }    
         public List<string> RelatedStops { get; set; }
 
         public List<NewsCategories> Names { get; set; }
-        public enum NewsCategories { News, Aufzugsservice }
+        public enum NewsCategories { News, Aufzugsservice}
 
         public string GetStringFromParameters(string url, string apiKey)
         {
@@ -40,11 +35,11 @@ namespace WienerLinienApi.News
             var relatedStops = string.Empty;
             if (RelatedLines != null && RelatedLines.Count != 0)
             {
-                relatedLines = string.Join("&", RelatedLines.Select(r => $"relatedLine={r}"));
+                 relatedLines = string.Join("&", RelatedLines.Select(r => $"relatedLine={r}"));
             }
             if (RelatedStops != null && RelatedStops.Count != 0)
             {
-                relatedStops = string.Join("&", RelatedStops.Select(r => $"relatedStop={r}"));
+                 relatedStops = string.Join("&", RelatedStops.Select(r => $"relatedStop={r}"));
             }
             var names = new List<string>() { "" };
             if (Names != null && Names.Count != 0)
@@ -53,7 +48,7 @@ namespace WienerLinienApi.News
             }
 
             var result = string.Join("", names.ToArray());
-            return string.Format(url, relatedLines, relatedStops, result, apiKey);
+            return string.Format(url, relatedLines, relatedStops,result, apiKey);
         }
     }
 }

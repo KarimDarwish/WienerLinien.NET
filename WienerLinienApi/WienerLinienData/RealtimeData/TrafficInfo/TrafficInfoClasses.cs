@@ -43,7 +43,7 @@ namespace WienerLinienApi.RealtimeData.TrafficInfo
         public List<TrafficInfo> TrafficInfos { get; set; }
         public bool IsNull()
         {
-            return TrafficInfos == null && TrafficInfoCategories == null && TrafficInfoCategoryGroups == null;
+            return TrafficInfos== null && TrafficInfoCategories == null && TrafficInfoCategoryGroups == null;
         }
     }
 

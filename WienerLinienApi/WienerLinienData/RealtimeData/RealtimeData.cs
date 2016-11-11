@@ -9,7 +9,7 @@ using WienerLinienApi.RealtimeData.TrafficInfo;
 
 namespace WienerLinienApi.RealtimeData
 {
-    public class RealtimeData
+    internal class RealtimeData
     {
 
         private const string MonitorApiLink = "https://www.wienerlinien.at/ogd_realtime/monitor?{0}{1}&sender={2}";
@@ -18,12 +18,13 @@ namespace WienerLinienApi.RealtimeData
         public string ApiKey { get; private set; }
         private HttpClient client;
 
-        public RealtimeData(WienerLinienContext context)
+        public RealtimeData(string apiKey)
         {
             client = new HttpClient();
-            if (context.ApiKey == string.Empty) return;
-            ApiKey = context.ApiKey;
-            client = context.Client;
+            if (apiKey != string.Empty)
+            {
+                ApiKey = apiKey;
+            }
         }
         public async Task<MonitorData> GetMonitorDataAsync(Parameters.MonitorParameters parameters)
         {
@@ -69,12 +70,12 @@ namespace WienerLinienApi.RealtimeData
 
 
     }
-
+   
 
     #region "Parameters class"
     public class Parameters
     {
-        public class MonitorParameters : IParameter
+        public class MonitorParameters: IParameter
         {
             /// <summary>
             /// List of all RBL's you want to receive real time data for
@@ -89,7 +90,7 @@ namespace WienerLinienApi.RealtimeData
             public string GetStringFromParameters(string url, string apiKey)
             {
                 var rbls = string.Join("&", Rbls.Select(r => $"rbl={r}"));
-                var trafficInfo = new List<string>() { "" };
+                var trafficInfo = new List<string>() {""};
                 if (TrafficInformation != null && TrafficInformation.Count != 0)
                 {
                     trafficInfo.AddRange(TrafficInformation.Select(item => "&activateTrafficInfo=" + item.ToString().ToLower()));
@@ -100,7 +101,7 @@ namespace WienerLinienApi.RealtimeData
             }
         }
 
-        public class TrafficInfoParameters : IParameter
+        public class TrafficInfoParameters: IParameter
         {
             public List<string> RelatedLines { get; set; }
             public List<string> RelatedStops { get; set; }
@@ -122,7 +123,7 @@ namespace WienerLinienApi.RealtimeData
                     relatedStops = string.Join("&", RelatedStops.Select(r => $"relatedStop={r}"));
                 }
                 var trafficInfo = new List<string>();
-
+                
                 if (TrafficInformation != null && TrafficInformation.Count != 0)
                 {
                     trafficInfo.AddRange(
@@ -135,5 +136,5 @@ namespace WienerLinienApi.RealtimeData
         }
 
     }
-    #endregion
+#endregion
 }

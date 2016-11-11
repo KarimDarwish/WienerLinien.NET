@@ -120,7 +120,7 @@ namespace WienerLinienApi.RealtimeData.Monitor
             return Monitors != null && TrafficInfoCategories != null && TrafficInfoCategoryGroups != null;
         }
 
-
+      
     }
 
     public class Message
