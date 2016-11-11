@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using WienerLinienApi.RealtimeData;
 
 namespace WienerLinienApi.Model
 {
@@ -8,7 +9,8 @@ namespace WienerLinienApi.Model
     {
         [JsonProperty("Data")]
         public Data DataObj { get; set; }
-
+        [JsonProperty("Message")]
+        public Message MessageObj { get; set; }
 
         public class Pois
         {
@@ -26,7 +28,8 @@ namespace WienerLinienApi.Model
             public string Empty { get; set; }
             public string[] RelatedLines { get; set; }
             public List<int> RelatedStops { get; set; }
-            public string Location { get; set; }
+            [JsonProperty("Location")]
+            public string LocationObj { get; set; }
             public string Station { get; set; }
             public string Status { get; set; }
             public List<int> Rbls { get; set; }
@@ -102,7 +105,12 @@ namespace WienerLinienApi.Model
                 return !((PoisObj != null && PoisObj.Count != 0) && (PoiCategories != null && PoiCategories.Count != 0) && (PoiCategoryGroups != null && PoiCategoryGroups.Count != 0));
             }
         }
-
+        public class Message
+        {
+            public string Value { get; set; }
+            public RealtimeErrorCode MessageCode { get; set; }
+            public string ServerTime { get; set; }
+        }
 
     }
 
