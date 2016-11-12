@@ -32,6 +32,7 @@ First you need to create a WienerLinienContext classs where your API Key is stor
     var wlContext = new WienerLinienContext("yourApiKey");
     
 Then you can already start :)
+
 As Wiener Linien don't provide all stations in their API, we had to grab them from their csv files and combine/parse them to JSON ourselves (see JsonGenerator folder).
 
 The stations are used to get the RBL Id for them, which is required to retrieve Realtime Data.
@@ -112,6 +113,7 @@ Contributors
 
 Of course it is possible to contribute yourself, to do so please:
 
+ - Fork it
  - Create your feature branch: `git checkout -b my-feature`
  - Commit your changes: `git commit -am 'New feature'` 
  - Push to the branch: `git push origin my-feature` 
