@@ -28,14 +28,16 @@ namespace WienerLinienApi.Test
             var listRbls = firstFive.Select(item => item.Platforms[0].RblNumber).ToList();
             var mp = new Parameters.MonitorParameters { Rbls = listRbls };
             var data = await rtd.GetMonitorDataAsync(mp);
+            var a = data.Data.Monitors[0].Lines[0].Departures.Departure[0].DepartureTime.TimePlanned;
             Assert.IsFalse(data.Data.IsNull());
+
         }
         [TestMethod]
         public async Task GetTrafficData()
         {
             var wlc = new WienerLinienContext("VgIHscNiquj8LYbV");
             var rtd = new RealtimeData.RealtimeData(wlc);
-            var currentTrafficInfo = await rtd.GetTrafficInfoDataAsync(new Parameters.TrafficInfoParameters());        
+            var currentTrafficInfo = await rtd.GetTrafficInfoDataAsync(new Parameters.TrafficInfoParameters());
             Assert.IsFalse(currentTrafficInfo.Data.IsNull());
         }
         
@@ -46,7 +48,8 @@ namespace WienerLinienApi.Test
             //takes long due to huge strings in result
             var wlc = new WienerLinienContext("VgIHscNiquj8LYbV");
             var news = new NewsWrapper(wlc);
-            var data = await news.GetNewsInformationListAsync(new Parameters.NewsParameters());
+            var data = await news.GetNewsInformationAsync(new Parameters.NewsParameters());
+            var a = data.DataObj.PoisObj[0].Description;
             Assert.IsFalse(data.DataObj.IsNull());
         }
         [TestMethod]

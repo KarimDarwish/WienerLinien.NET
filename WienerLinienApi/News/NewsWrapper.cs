@@ -21,7 +21,7 @@ namespace WienerLinienApi.News
             _apiKey = context.ApiKey;
             _client = new HttpClient();
         }
-        public async Task<Model.News> GetNewsInformationListAsync(NewsParameters parameters)
+        public async Task<Model.News> GetNewsInformationAsync(NewsParameters parameters)
         {
             #region "Parameter check"
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
@@ -41,20 +41,6 @@ namespace WienerLinienApi.News
 
             return response != null ? JsonConvert.DeserializeObject<Model.News>(response) : null;
 
-        }
-
-        public async Task<Model.News> GetNewsInformationAsync(NewsParameters parameters)
-        {
-            #region "Parameter check"
-            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
-
-            #endregion
-            var url = parameters.GetStringFromParameters(NewsApiLink, _apiKey);
-            if (_client == null)
-                _client = new HttpClient();
-
-            var response = await _client.GetStringAsync(url).ConfigureAwait(false);
-            return response != null ? JsonConvert.DeserializeObject<Model.News>(response) : null;
         }
     }
 }
