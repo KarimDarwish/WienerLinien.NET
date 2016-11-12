@@ -12,7 +12,7 @@ Installation
 The Wrapper is available via NuGet: 
 	
 
-    PM> Install-Package GraphViz.NET
+    PM> Install-Package WienerLinien.NET
     
 or you can download the binaries [here](https://github.com/KarimDarwish/Wiener-Linien-.NET/releases)
 
@@ -32,9 +32,9 @@ First you need to create a WienerLinienContext classs where your API Key is stor
     var wlContext = new WienerLinienContext("yourApiKey");
     
 Then you can already start :)
-As Wiener Linien don't provide all Stations in their API, we had to grab them from their csv files and parse them ourselves (see JsonGenerator folder).
+As Wiener Linien don't provide all stations in their API, we had to grab them from their csv files and combine/parse them to JSON ourselves (see JsonGenerator folder).
 
-The stations are used to get the RBL Id for them, which is used to retrieve Realtime Data.
+The stations are used to get the RBL Id for them, which is required to retrieve Realtime Data.
 
 To get all stations:
 
@@ -58,7 +58,7 @@ Now you can get realtime monitor information:
     //Get the planned arrival time for the first line and the next vehicle arriving (index at Departure)
     var plannedTime = monitorInfo.Result.Data.Monitors[0].Lines[0].Departures.Departure[0].DepartureTime.TimePlanned;
 
-To receive current TrafficInformation (current failures like elevator or other interruptions), you need to use the `GetTrafficInformationAsync` method.
+To receive current TrafficInformation (current failures like elevator and other interruptions), you need to use the `GetTrafficInformationAsync` method.
 
 As parameter you can choose either related lines or related stops as well as the type of failure.
 
@@ -105,10 +105,10 @@ Credits
 
 Contributors
 --------------------
-
  - [Ali Sheikh](https://github.com/alaeschaik)
- - [Johannes Mayerl](https://github.com/johannesMayerl)
  - [Karim Darwish](https://github.com/KarimDarwish)
+ - [Johannes Mayerl](https://github.com/johannesMayerl)
+ 
 
 Of course it is possible to contribute yourself, to do so please:
 
