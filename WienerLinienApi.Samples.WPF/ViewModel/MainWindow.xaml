@@ -1,36 +1,15 @@
-﻿<Window x:Class="WienerLinienApi.Samples.WPF.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <TabControl >
-            <TabItem Header="Initialize">
-                <Grid Margin="10,15,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="25" />
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0"  TextWrapping="Wrap"  VerticalAlignment="Top">This program should serve as a sample application for the
-                WienerLinien.NET API by Ali Sheikh, Johannes Mayerl and Karim Darwish</TextBlock>
-                    <TextBlock Grid.Row="1" TextWrapping="Wrap">Link: <Hyperlink  NavigateUri="https://github.com/KarimDarwish/Wiener-Linien-.NET">Github</Hyperlink></TextBlock>
-                    <TextBlock Grid.Row="2" TextWrapping="Wrap"> If you find any problems or bugs, please create an issue on Github</TextBlock>
-                    <TextBlock Grid.Row="3"> Please enter your API Key:</TextBlock>
-                    <TextBox Grid.Row="3" Width="300" HorizontalAlignment="Right"></TextBox>
-                    <Button Grid.Row="4" Margin="0,10,0,0">Set</Button>
-                </Grid>
-
-            </TabItem>
-            <TabItem Header="Monitor">
-                
-                
-            </TabItem>
-            <TabItem Header="News"></TabItem>
-        </TabControl>
-    </Grid>
+﻿<Window
+  x:Class="WienerLinienApi.Samples.WPF.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d"
+  Title="MainWindow"
+  Height="350"
+  Width="525"
+  WindowState="Maximized">
+  <Grid>
+    
+  </Grid>
 </Window>
