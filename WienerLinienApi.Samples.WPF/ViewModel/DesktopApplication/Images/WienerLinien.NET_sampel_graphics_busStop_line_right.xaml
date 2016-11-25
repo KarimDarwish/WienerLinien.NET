@@ -1,0 +1,67 @@
+<!-- Created with Ai->XAML Export Plug-In Version 0.2 (PC/64) -->
+<!-- By Mike Swanson (http://blog.mikeswanson.com/)           -->
+
+<Viewbox Width="189.446" Height="82.151"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Canvas Width="189.446" Height="82.151">
+
+  <Canvas>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff060e58" StrokeMiterLimit="1.0" Fill="#ff060e58" Data="F1 M 72.918,80.868 L 37.288,80.868 L 37.228,1.033 L 72.858,1.033 L 72.918,80.868 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 72.828,0.003 L 73.088,82.148"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 36.928,0.003 L 36.988,81.898"/>
+
+  <!-- Ebene 8/<Zusammengesetzter Pfad> -->
+  <Path Fill="#ffbfbfbf" Data="F1 M 84.938,44.858 L 81.398,42.858 L 81.398,38.778 L 84.938,36.728 L 88.468,38.778 L 88.468,42.858 L 84.938,44.858 Z M 99.938,44.858 L 96.398,42.858 L 96.398,38.778 L 99.938,36.728 L 103.468,38.778 L 103.468,42.858 L 99.938,44.858 Z M 106.688,32.688 L 76.828,31.758 L 62.618,32.018 L 53.438,25.818 L 53.188,54.318 L 59.428,50.538 L 76.478,50.088 L 105.868,50.088 L 115.038,59.898 C 111.871,54.113 110.290,47.592 110.458,40.998 C 110.662,33.018 113.208,25.273 117.778,18.728 L 117.778,18.728 L 106.688,32.688 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path Fill="#ff6f6f6f" Data="F1 M 99.938,36.728 L 96.398,38.778 L 96.398,42.858 L 99.938,44.898 L 103.468,42.858 L 103.468,38.778 L 99.938,36.728 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path Fill="#ff6f6f6f" Data="F1 M 84.938,36.728 L 81.398,38.778 L 81.398,42.858 L 84.938,44.898 L 88.468,42.858 L 88.468,38.778 L 84.938,36.728 Z"/>
+
+  <!-- Ebene 8/<Zusammengesetzter Pfad> -->
+  <Path Fill="#ffbfbfbf" Data="F1 M 13.998,40.818 C 13.999,40.832 13.999,40.845 13.999,40.859 C 14.015,42.334 12.833,43.542 11.358,43.558 C 9.961,43.557 8.812,42.455 8.753,41.058 C 8.692,39.618 9.811,38.401 11.251,38.340 C 12.691,38.280 13.908,39.398 13.968,40.838 L 13.998,40.818 Z M 24.908,44.838 L 21.368,42.838 L 21.368,38.758 L 24.908,36.708 L 28.438,38.758 L 28.438,42.838 L 24.908,44.838 Z M 45.048,32.298 L 6.548,32.548 C 6.548,32.548 -6.042,39.908 6.708,49.728 L 32.858,49.328 L 46.968,49.758 L 53.188,54.338 L 53.438,25.838 L 45.048,32.298 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path Fill="#ff6f6f6f" Data="F1 M 24.938,36.728 L 21.398,38.778 L 21.398,42.858 L 24.938,44.898 L 28.468,42.858 L 28.468,38.778 L 24.938,36.728 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 115.198,60.088 L 115.058,59.938 L 105.888,50.128 L 76.478,50.128 L 59.428,50.578 L 53.188,54.358 L 46.968,49.778 L 32.858,49.348 L 6.708,49.748 C -6.042,39.928 6.548,32.568 6.548,32.568 L 45.048,32.318 L 53.438,25.858 L 62.618,32.058 L 76.828,31.798 L 106.688,32.728 L 117.778,18.728"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff1c1c1a" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeMiterLimit="1.0" Data="F1 M 126.677,73.180 C 144.165,85.754 168.535,81.770 181.108,64.282 C 193.682,46.794 189.698,22.424 172.210,9.850 C 154.722,-2.724 130.352,1.260 117.778,18.748 C 113.215,25.296 110.676,33.040 110.478,41.018 C 110.310,47.612 111.891,54.133 115.058,59.918 C 117.868,65.168 121.842,69.704 126.677,73.180 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 21.398,38.778 L 21.398,42.858 L 24.938,44.898 L 28.468,42.858 L 28.468,38.778 L 24.938,36.728 L 21.398,38.778 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 81.398,38.778 L 81.398,42.858 L 84.938,44.898 L 88.468,42.858 L 88.468,38.778 L 84.938,36.728 L 81.398,38.778 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 96.398,38.778 L 96.398,42.858 L 99.938,44.898 L 103.468,42.858 L 103.468,38.778 L 99.938,36.728 L 96.398,38.778 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 13.998,40.818 C 13.998,42.320 12.830,43.538 11.388,43.538 C 9.947,43.538 8.778,42.320 8.778,40.818 C 8.778,39.316 9.947,38.098 11.388,38.098 C 12.830,38.098 13.998,39.316 13.998,40.818 Z"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="2.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 53.188,54.338 L 53.438,25.838"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="1.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 27.818,40.598 L 21.938,40.598"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="1.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 87.778,40.708 L 81.908,40.598"/>
+
+  <!-- Ebene 8/<Pfad> -->
+  <Path StrokeThickness="1.0" Stroke="#ff000000" StrokeMiterLimit="1.0" Data="F1 M 101.598,43.208 L 98.338,38.208"/>
+
+  </Canvas>
+</Canvas>
+</Viewbox>

@@ -63,7 +63,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ViewModel\DesktopApplication\Images\WienerLinien.NET_sampel_graphics_busStop_line_right.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ViewModel\DesktopApplication\Images\WienerLinien.NET_sampel_graphics_bus_stop_station.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewModel\DesktopApplication\Images\WienerLinien.NET_sampel_graphics_tramStop_line_left.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewModel\DesktopApplication\Images\WienerLinien.NET_sampel_graphics_tramStop_line_right.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ViewModel\DesktopApplication\Images\WienerLinien.NET_sampel_graphics_tramStop_station.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
