@@ -9,7 +9,7 @@ It provides you with all features from the official API and all you need is an A
 Installation
 -------------
 
-The Wrapper is available via NuGet: 
+The library is available via NuGet: 
 	
 
     PM> Install-Package WienerLinien.NET
@@ -31,7 +31,7 @@ First you need to create a WienerLinienContext classs where your API Key is stor
 
     var wlContext = new WienerLinienContext("yourApiKey");
     
-Then you can already start :)
+Then you can already start 
 
 As Wiener Linien don't provide all stations in their API, we had to grab them from their csv files and combine/parse them to JSON ourselves (see JsonGenerator folder).
 
@@ -106,9 +106,9 @@ Credits
 
 Contributors
 --------------------
- - [Ali Sheikh](https://github.com/alaeschaik)
  - [Karim Darwish](https://github.com/KarimDarwish)
  - [Johannes Mayerl](https://github.com/johannesMayerl)
+ - [Ali Sheikh](https://github.com/alaeschaik)
  
 
 Of course it is possible to contribute yourself, to do so please:
