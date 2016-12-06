@@ -16,6 +16,9 @@ namespace WienerLinienApi.Model
             /// Parameters for traffic information
             /// </summary>
             public enum TrafficInfo { Stoerungkurz, Stoerunglang, AufzugsInfo }
+            /// <summary>
+            /// List of trafficInfo objects you want to set as parameter
+            /// </summary>
             public List<TrafficInfo> TrafficInformation { get; set; }
 
             public string GetStringFromParameters(string url, string apiKey)
@@ -34,7 +37,13 @@ namespace WienerLinienApi.Model
 
         public class TrafficInfoParameters : IParameter
         {
+            /// <summary>
+            /// Lines you want to have information to 
+            /// </summary>
             public List<string> RelatedLines { get; set; }
+            /// <summary>
+            /// Stops you want to have information to
+            /// </summary>
             public List<string> RelatedStops { get; set; }
             public enum TrafficInfo { Stoerungkurz, Stoerunglang, AufzugsInfo }
             public List<TrafficInfo> TrafficInformation { get; set; }

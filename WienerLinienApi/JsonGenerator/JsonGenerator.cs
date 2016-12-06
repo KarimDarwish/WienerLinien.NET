@@ -52,7 +52,8 @@ namespace WienerLinienApi.JsonGenerator
                 join line in Lines on platform.FkLineId equals line.LineId
                 select new WienerLinienModel.PlatformsModel
                 {
-                    Line = line.LineId,
+                    LineId = line.LineId.TryParse(0),
+                    Name = line.Description,
                     Realtime = Convert.ToBoolean(Convert.ToInt16(line.Realtime)),
                     MeansOfTransport = line.MeansOfTransport,
                     RblNumber = platform.RblNumber.TryParse(0),
@@ -230,7 +231,8 @@ namespace WienerLinienApi.JsonGenerator
             public List<PlatformsModel> Platforms { get; set; }
             public struct PlatformsModel
             {
-                public string Line { get; set; }
+                public int LineId { get; set; }
+                public string Name { get; set; }
                 public bool Realtime { get; set; }
                 public MeansOfTransport MeansOfTransport { get; set; }
                 public int RblNumber { get; set; }

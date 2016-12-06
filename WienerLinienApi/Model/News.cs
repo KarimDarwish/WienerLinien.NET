@@ -64,36 +64,6 @@ namespace WienerLinienApi.Model
             public string Type { get; set; }
             public Properties Properties { get; set; }
         }
-
-        //public class Pois
-        //{
-        //    public int refPoiCategoryId { get; set; }
-        //    public string title { get; set; }
-        //    public string description { get; set; }
-        //    public string name { get; set; }
-        //    public Attributes attributes { get; set; }
-        //    public int? id { get; set; }
-        //    public string teaser { get; set; }
-        //    public List<string> names { get; set; }
-        //    public Location location { get; set; }
-        //    public long? start { get; set; }
-        //    public long? end { get; set; }
-        //}
-
-        //public class PoiCategory
-        //{
-        //    public int id { get; set; }
-        //    public int refPoiCategoryGroupId { get; set; }
-        //    public string title { get; set; }
-        //    public string name { get; set; }
-        //}
-
-        //public class PoiCategoryGroup
-        //{
-        //    public int id { get; set; }
-        //    public string name { get; set; }
-        //    public string title { get; set; }
-        //}
         public class Data
         {
             [JsonProperty("pois")]
