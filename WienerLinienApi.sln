@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WienerLinienApi.Samples.WPF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WienerLinienApi.Test", "WienerLinienApi.Test\WienerLinienApi.Test.csproj", "{B01163B5-56D8-4409-B915-9ACFAFD5207C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingAPI", "TestingAPI\TestingAPI.csproj", "{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,11 +57,24 @@ Global
 		{B01163B5-56D8-4409-B915-9ACFAFD5207C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B01163B5-56D8-4409-B915-9ACFAFD5207C}.Release|x86.ActiveCfg = Release|Any CPU
 		{B01163B5-56D8-4409-B915-9ACFAFD5207C}.Release|x86.Build.0 = Release|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Debug|x86.Build.0 = Debug|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Release|x86.ActiveCfg = Release|Any CPU
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0321C8E1-7105-4FFC-8EEA-C3AAE3BE8361} = {606026F6-FB1F-47E3-87EA-C6BAF64A1713}
+		{A820C59A-726C-4C9D-B2D2-B7694FFDC41F} = {606026F6-FB1F-47E3-87EA-C6BAF64A1713}
 	EndGlobalSection
 EndGlobal

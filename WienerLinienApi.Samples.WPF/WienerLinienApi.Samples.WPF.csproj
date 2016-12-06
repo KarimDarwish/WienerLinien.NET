@@ -64,7 +64,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\NewFavoriteStop.cs" />
-    <Compile Include="Testing.cs" />
     <Compile Include="View\BusStopView.xaml.cs">
       <DependentUpon>BusStopView.xaml</DependentUpon>
     </Compile>
