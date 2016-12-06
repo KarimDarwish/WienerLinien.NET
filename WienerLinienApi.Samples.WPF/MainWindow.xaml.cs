@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WienerLinienApi.Samples.WPF.ViewModel.DesktopApplication
+namespace WienerLinienApi.Samples.WPF.View
 {
     /// <summary>
-    /// Interaction logic for FancyWindowView.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class FancyWindowView : UserControl
+    public partial class MainWindow : Window
     {
-        public FancyWindowView()
+        public MainWindow()
         {
             InitializeComponent();
         }
