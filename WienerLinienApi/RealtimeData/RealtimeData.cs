@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WienerLinienApi.Model;
@@ -35,7 +36,7 @@ namespace WienerLinienApi.RealtimeData
 
             var response = await _client.GetStringAsync(url).ConfigureAwait(false);
             var deserialized = JsonConvert.DeserializeObject<MonitorData>(response);
-            if (deserialized.Message != null)
+            if (deserialized.Message != null && !deserialized.Message.Value.Equals("OK"))
             {
                 throw new RealtimeError(deserialized.Message.MessageCode);
             }
