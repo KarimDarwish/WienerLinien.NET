@@ -52,6 +52,7 @@ namespace WienerLinienApi.Test
             var a = data.DataObj.PoisObj[0].Description;
             Assert.IsFalse(data.DataObj.IsNull());
         }
+
         [TestMethod]
         [ExpectedException(typeof(RealtimeError))]
         public async Task GetTrafficDataWithInvalidKey()

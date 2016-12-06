@@ -43,7 +43,7 @@ namespace WienerLinienApi.JsonGenerator
         }
 
 
-    public async Task<string> GetJsonAsync()
+        public async Task<string> GetJsonAsync()
         {
             await DownloadFilesAsync();
             // DownloadFiles();
@@ -66,19 +66,19 @@ namespace WienerLinienApi.JsonGenerator
                 };
 
 
-            
+
 
             var listModel =
             from platforms in listPlatformsModel.ToList()
             join haltestelle in Haltetellen on platforms.StationId equals int.Parse(haltestelle.StationId)
             group platforms by haltestelle
-            into grp     
+            into grp
             select new WienerLinienModel
             {
                 StationId = grp.Key.StationId.TryParse(0),
-            // StationId = IntTryParse(grp.Key.StationId),
+                // StationId = IntTryParse(grp.Key.StationId),
 
-            Typ = grp.Key.Typ,
+                Typ = grp.Key.Typ,
                 Diva = grp.Key.Diva,
                 Name = grp.Key.Name,
                 Municipality = grp.Key.Municipality,
@@ -176,7 +176,7 @@ namespace WienerLinienApi.JsonGenerator
 
         #region Structs and Models
 
-     
+
         public struct HaltestellenModel
         {
             public string StationId { get; set; }

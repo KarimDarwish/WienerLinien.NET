@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using WienerLinienApi;
 using WienerLinienApi.Information;
+using WienerLinienApi.Model;
 
 namespace TestingAPI
 {
@@ -13,17 +14,18 @@ namespace TestingAPI
     {
         static void Main(string[] args)
         {
-            test();
+            Task.Run(async () =>
+            {
+                await test();
+            }).Wait();
+
         }
 
-        public static async void test()
+        public static async Task test()
         {
-            Console.WriteLine("Start");
-            var wlContext = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
-            Console.WriteLine(wlContext.ApiKey);
-            Thread.Sleep(1000);
+
+
             var allStations = await Stations.GetAllStationsAsync();
-            Thread.Sleep(1000);
             foreach (var var1 in allStations)
             {
                 Console.WriteLine(var1.Name);
