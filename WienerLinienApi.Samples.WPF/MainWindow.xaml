@@ -356,6 +356,7 @@
                 Storyboard.TargetName="RotateGrid"
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
                 By="90"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
               <!-- Add bus stop effect -->
@@ -364,6 +365,7 @@
                 Storyboard.TargetProperty="Opacity"
                 From="0"
                 To="1.0"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
               <DoubleAnimation
@@ -371,6 +373,7 @@
                 Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
                 From="0"
                 To="-100"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
               <!-- Add tram stop effect -->
@@ -379,6 +382,7 @@
                 Storyboard.TargetProperty="Opacity"
                 From="0"
                 To="1.0"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
               <DoubleAnimation
@@ -386,6 +390,7 @@
                 Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
                 From="0"
                 To="-200"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
               <!-- Add tube stop effect -->
@@ -394,6 +399,7 @@
                 Storyboard.TargetProperty="Opacity"
                 From="0"
                 To="1.0"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
               <DoubleAnimation
@@ -401,6 +407,7 @@
                 Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
                 From="0"
                 To="-300"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
               <!-- Add train stop effect -->
@@ -409,6 +416,7 @@
                 Storyboard.TargetProperty="Opacity"
                 From="0"
                 To="1.0"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
               <DoubleAnimation
@@ -416,6 +424,7 @@
                 Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
                 From="0"
                 To="-400"
+                BeginTime="0:0:0.1"
                 Duration="0:0:0.2"
                 AutoReverse="False" />
             </Storyboard>
@@ -429,6 +438,7 @@
                 Storyboard.TargetName="RotateGrid"
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
                 By="-90"
+                BeginTime="0:0:2"
                 Duration="0:0:0.5"
                 AutoReverse="False" />
               <!-- Add bus stop effect -->
