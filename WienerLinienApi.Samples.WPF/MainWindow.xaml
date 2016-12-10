@@ -33,15 +33,324 @@
         Width="1*" />
     </Grid.ColumnDefinitions>
 
-    <Viewbox
-      StretchDirection="Both"
-      Stretch="Uniform">
-      <views:UserControl1
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch" />
-    </Viewbox>
+    <Button
+      x:Name="AddBusButton"
+      Grid.Column="4"
+      Grid.Row="2"
+      Width="71"
+      Height="71"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Bottom"
+      Margin="0,0,35,35"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center"
+      Opacity="0">
+      <Button.Template>
+        <ControlTemplate
+          TargetType="Button">
+          <Grid>
+            <Ellipse
+              Stroke="{x:Null}"
+              Fill="#FFFF6400" />
+            <ContentPresenter
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center" />
+          </Grid>
+        </ControlTemplate>
+      </Button.Template>
+      <Button.RenderTransform>
+        <TranslateTransform />
+      </Button.RenderTransform>
+    </Button>
 
+    <Button
+      x:Name="AddTramButton"
+      Grid.Column="4"
+      Grid.Row="2"
+      Width="71"
+      Height="71"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Bottom"
+      Margin="0,0,35,35"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center"
+      Opacity="0">
+      <Button.Template>
+        <ControlTemplate
+          TargetType="Button">
+          <Grid>
+            <Ellipse
+              Stroke="{x:Null}"
+              Fill="#FFFF6400" />
+            <ContentPresenter
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center" />
+          </Grid>
+        </ControlTemplate>
+      </Button.Template>
+      <Button.RenderTransform>
+        <TranslateTransform />
+      </Button.RenderTransform>
+    </Button>
     
+    <Button
+      x:Name="AddTubeButton"
+      Grid.Column="4"
+      Grid.Row="2"
+      Width="71"
+      Height="71"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Bottom"
+      Margin="0,0,35,35"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center"
+      Opacity="0">
+      <Button.Template>
+        <ControlTemplate
+          TargetType="Button">
+          <Grid>
+            <Ellipse
+              Stroke="{x:Null}"
+              Fill="#FFFF6400" />
+            <ContentPresenter
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center" />
+          </Grid>
+        </ControlTemplate>
+      </Button.Template>
+      <Button.RenderTransform>
+        <TranslateTransform />
+      </Button.RenderTransform>
+    </Button>
+
+    <Button
+      x:Name="AddTrainButton"
+      Grid.Column="4"
+      Grid.Row="2"
+      Width="71"
+      Height="71"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Bottom"
+      Margin="0,0,35,35"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center"
+      Opacity="0">
+      <Button.Template>
+        <ControlTemplate
+          TargetType="Button">
+          <Grid>
+            <Ellipse
+              Stroke="{x:Null}"
+              Fill="#FFFF6400" />
+            <ContentPresenter
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center" />
+          </Grid>
+        </ControlTemplate>
+      </Button.Template>
+      <Button.RenderTransform>
+        <TranslateTransform />
+      </Button.RenderTransform>
+    </Button>
+
+    <Button
+      Grid.Column="4"
+      Grid.Row="2"
+      Width="100"
+      Height="100"
+      HorizontalAlignment="Right"
+      VerticalAlignment="Bottom"
+      Margin="0,0,20,20"
+      HorizontalContentAlignment="Center"
+      VerticalContentAlignment="Center">
+
+      <Button.Triggers>
+        <EventTrigger
+          RoutedEvent="Button.MouseEnter">
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation
+                Storyboard.TargetName="RotateGrid"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                By="90"
+                Duration="0:0:0.2"
+                AutoReverse="False"
+                />
+              <!-- Add bus stop effect -->
+              <DoubleAnimation
+                Storyboard.TargetName="AddBusButton"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1.0"
+                Duration="0:0:0.2"
+                AutoReverse="False" />
+              <DoubleAnimation
+                Storyboard.TargetName="AddBusButton"
+                Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                From="0"
+                To="-100"
+                Duration="0:0:0.2"
+                AutoReverse="False" />
+              <!-- Add tram stop effect -->
+              <DoubleAnimation
+                Storyboard.TargetName="AddTramButton"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1.0"
+                Duration="0:0:0.2"
+                AutoReverse="False" />
+              <DoubleAnimation
+                Storyboard.TargetName="AddTramButton"
+                Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                From="0"
+                To="-200"
+                Duration="0:0:0.2"
+                AutoReverse="False" />
+              <!-- Add tube stop effect -->
+              <DoubleAnimation
+                Storyboard.TargetName="AddTubeButton"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1.0"
+                Duration="0:0:0.2"
+                AutoReverse="False" />
+              <DoubleAnimation
+                Storyboard.TargetName="AddTubeButton"
+                Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                From="0"
+                To="-300"
+                Duration="0:0:0.2"
+                AutoReverse="False" />
+              <!-- Add train stop effect -->
+              <DoubleAnimation
+                Storyboard.TargetName="AddTrainButton"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1.0"
+                Duration="0:0:0.2"
+                AutoReverse="False" />
+              <DoubleAnimation
+                Storyboard.TargetName="AddTrainButton"
+                Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                From="0"
+                To="-400"
+                Duration="0:0:0.2"
+                AutoReverse="False" />
+            </Storyboard>
+          </BeginStoryboard>
+        </EventTrigger>
+        <EventTrigger
+          RoutedEvent="Button.MouseLeave">
+          <BeginStoryboard>
+            <Storyboard>
+              <DoubleAnimation
+                Storyboard.TargetName="RotateGrid"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                By="-90"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+              <!-- Add bus stop effect -->
+              <DoubleAnimation
+                Storyboard.TargetName="AddBusButton"
+                Storyboard.TargetProperty="Opacity"
+                From="1.0"
+                To="0"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+              <DoubleAnimation
+                Storyboard.TargetName="AddBusButton"
+                Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                From="-100"
+                To="0"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+              <!-- Add tram stop effect -->
+              <DoubleAnimation
+                Storyboard.TargetName="AddTramButton"
+                Storyboard.TargetProperty="Opacity"
+                From="1.0"
+                To="0"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+              <DoubleAnimation
+                Storyboard.TargetName="AddTramButton"
+                Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                From="-200"
+                To="0"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+              <!-- Add tube stop effect -->
+              <DoubleAnimation
+                Storyboard.TargetName="AddTubeButton"
+                Storyboard.TargetProperty="Opacity"
+                From="1.0"
+                To="0"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+              <DoubleAnimation
+                Storyboard.TargetName="AddTubeButton"
+                Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                From="-300"
+                To="0"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+              <!-- Add train stop effect -->
+              <DoubleAnimation
+                Storyboard.TargetName="AddTrainButton"
+                Storyboard.TargetProperty="Opacity"
+                From="1.0"
+                To="0"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+              <DoubleAnimation
+                Storyboard.TargetName="AddTrainButton"
+                Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                From="-400"
+                To="0"
+                Duration="0:0:0.5"
+                AutoReverse="False" />
+            </Storyboard>
+          </BeginStoryboard>
+        </EventTrigger>
+      </Button.Triggers>
+
+      <Button.Template>
+        <ControlTemplate
+          TargetType="Button">
+          <Grid>
+            <Ellipse
+              Stroke="{x:Null}"
+              StrokeThickness="2"
+              Fill="#FFFF8B00" />
+            <ContentPresenter
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center" />
+          </Grid>
+        </ControlTemplate>
+      </Button.Template>
+      <Grid
+        x:Name="RotateGrid"
+        RenderTransformOrigin="0.496,0.526">
+        <Label
+          Background="{x:Null}"
+          BorderBrush="{x:Null}"
+          Content="＋"
+          Margin="0,0,0,0"
+          VerticalContentAlignment="Center"
+          HorizontalAlignment="Center"
+          FontSize="65"
+          Foreground="White"
+          IsEnabled="False"
+          RenderTransformOrigin="0.5,0.5">
+        </Label>
+        <Grid.RenderTransform>
+          <RotateTransform
+            Angle="0">
+            
+          </RotateTransform>
+        </Grid.RenderTransform>
+      </Grid>
+    </Button>
 
   </Grid>
 </Window>
