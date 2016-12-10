@@ -64,6 +64,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\NewFavoriteStop.cs" />
+    <Compile Include="View\TrainStopFavDialog.xaml.cs">
+      <DependentUpon>TrainStopFavDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TubeStopFavDialog.xaml.cs">
+      <DependentUpon>TubeStopFavDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TramStopFavDialog.xaml.cs">
+      <DependentUpon>TramStopFavDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BusStopFavDialog.xaml.cs">
+      <DependentUpon>BusStopFavDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BusStopView.xaml.cs">
       <DependentUpon>BusStopView.xaml</DependentUpon>
     </Compile>
@@ -109,6 +121,22 @@
     <Page Include="Resources\tube.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TrainStopFavDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TubeStopFavDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TramStopFavDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\BusStopFavDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BusStopView.xaml">
       <SubType>Designer</SubType>
