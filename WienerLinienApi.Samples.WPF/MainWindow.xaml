@@ -44,7 +44,8 @@
       Margin="0,0,35,35"
       HorizontalContentAlignment="Center"
       VerticalContentAlignment="Center"
-      Opacity="0">
+      Opacity="0"
+      Click="AddBusButton_OnClick">
       <Button.Template>
         <ControlTemplate
           TargetType="Button">

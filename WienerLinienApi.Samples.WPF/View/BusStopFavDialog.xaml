@@ -1,12 +1,141 @@
-﻿<Window x:Class="WienerLinienApi.Samples.WPF.View.BusStopFavDialog"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WienerLinienApi.Samples.WPF.View"
-        mc:Ignorable="d"
-        Title="BusStopFavDialog" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+﻿<Window
+  x:Class="WienerLinienApi.Samples.WPF.View.BusStopFavDialog"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:behaviors="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:local="clr-namespace:WienerLinienApi.Samples.WPF.View"
+  mc:Ignorable="d"
+  Title="BusStopFavDialog"
+  Height="500"
+  Width="500"
+  ResizeMode="NoResize">
+  <Window.Resources>
+    <Style
+      x:Key="TextLabelStyle"
+      TargetType="{x:Type Control}">
+      <Setter
+        Property="VerticalAlignment"
+        Value="Center" />
+      <Setter
+        Property="HorizontalAlignment"
+        Value="Right" />
+      <Setter
+        Property="Foreground"
+        Value="Black" />
+      <Setter
+        Property="FontSize"
+        Value="20" />
+    </Style>
+
+    <Style
+      x:Key="TextBoxStyle"
+      TargetType="{x:Type TextBox}">
+      <Setter
+        Property="VerticalAlignment"
+        Value="Center" />
+      <Setter
+        Property="HorizontalAlignment"
+        Value="Stretch" />
+      <Setter
+        Property="Foreground"
+        Value="Black" />
+      <Setter
+        Property="Margin"
+        Value="10 5 20 5" />
+      <Setter
+        Property="FontSize"
+        Value="22" />
+      <Setter
+        Property="MaxLines"
+        Value="1" />
+    </Style>
+  </Window.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition
+        Height="1*" />
+      <RowDefinition
+        Height="5*" />
+      <RowDefinition
+        Height="5*" />
+      <RowDefinition
+        Height="5*" />
+      <RowDefinition
+        Height="5*" />
+      <RowDefinition
+        Height="5*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition
+        Width="1*" />
+      <ColumnDefinition
+        Width="2*" />
+    </Grid.ColumnDefinitions>
+
+    <Label
+      Grid.Row="1"
+      Grid.Column="0"
+      Style="{StaticResource TextLabelStyle}"
+      Content="Stop Name"/>
+
+    <Label
+      Grid.Row="2"
+      Grid.Column="0"
+      Style="{StaticResource TextLabelStyle}"
+      Content="Line" />
+
+    <Label
+      Grid.Row="3"
+      Grid.Column="0"
+      Style="{StaticResource TextLabelStyle}"
+      Content="Direction" />
+
+    <Label
+      Grid.Row="4"
+      Grid.Column="0"
+      Style="{StaticResource TextLabelStyle}"
+      Content="Platform" />
+
+    <TextBox
+      Grid.Row="1"
+      Grid.Column="1"
+      Style="{StaticResource TextBoxStyle}"
+      Text="{Binding TestText, UpdateSourceTrigger=PropertyChanged}"
+      behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding TestItems}"
+      behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase" />
+
+    <TextBox
+      Grid.Row="2"
+      Grid.Column="1"
+      Style="{StaticResource TextBoxStyle}"
+      Text="{Binding TestText, UpdateSourceTrigger=PropertyChanged}"
+      behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding TestItems}"
+      behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase" />
+
+    <TextBox
+      Grid.Row="3"
+      Grid.Column="1"
+      Style="{StaticResource TextBoxStyle}"
+      Text="{Binding TestText, UpdateSourceTrigger=PropertyChanged}"
+      behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding TestItems}"
+      behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase" />
+
+    <TextBox
+      Grid.Row="4"
+      Grid.Column="1"
+      Style="{StaticResource TextBoxStyle}"
+      Text="{Binding TestText, UpdateSourceTrigger=PropertyChanged}"
+      behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding TestItems}"
+      behaviors:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase" />
+
+    <Button
+      Grid.Row="5"
+      Grid.Column="1"
+      Margin="90 30 30 30"
+      Content="OK"
+      ></Button>
+    
+  </Grid>
 </Window>
