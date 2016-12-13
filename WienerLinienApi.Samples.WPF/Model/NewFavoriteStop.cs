@@ -19,11 +19,7 @@ namespace WienerLinienApi.Samples.WPF.Model
 
         public NewFavoriteStop(string type)
         {
-            Task.Run(async () =>
-            {
-                BusStops = (await Start(type));
-            }).Wait();
-
+            
         }
 
         public async Task<List<string>> Start(string type)
@@ -35,14 +31,7 @@ namespace WienerLinienApi.Samples.WPF.Model
 
             foreach (var v in allStations)
             {
-                foreach (var v2 in v.Platforms)
-                {
-                    if (v2.MeansOfTransport.Contains("bus"))
-                    {
-                        listOfStations.Add(v.Name);
-                        break;
-                    }
-                }
+               listOfStations.Add(v.Name);
             }
 
             return listOfStations;
