@@ -23,5 +23,7 @@ namespace WienerLinienApi.Samples.WPF.View
         {
             InitializeComponent();
         }
+
+        
     }
 }

@@ -19,9 +19,11 @@ namespace WienerLinienApi.Samples.WPF.View
     /// </summary>
     public partial class BusStopFavDialog : Window
     {
+        
         public BusStopFavDialog()
         {
             InitializeComponent();
+            
         }
     }
 }
