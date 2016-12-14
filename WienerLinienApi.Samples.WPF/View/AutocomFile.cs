@@ -16,10 +16,10 @@ namespace WienerLinienApi.Samples.WPF.View
 
         public AutocomFile()
         {
-           var init = new NewFavoriteStop("bus");
+            var init = new NewFavoriteStop("bus");
             Task.Run(async () =>
             {
-                TestItems = (await init.Start("bus"));
+                TestItems = (await init.GetStaionNames("bus"));
             }).Wait();
         }
     }

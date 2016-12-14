@@ -22,18 +22,15 @@ namespace WienerLinienApi.Samples.WPF.Model
             
         }
 
-        public async Task<List<string>> Start(string type)
+        public async Task<List<string>> GetStaionNames(string type)
         {
             var context = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
             var allStations = await Stations.GetAllStationsAsync();
 
-            var listOfStations = new List<String>();
-
-            foreach (var v in allStations)
-            {
-               listOfStations.Add(v.Name);
-            }
-
+            var listOfStations = (from v in allStations
+                                  from p in  v.Platforms
+                                  where p.MeansOfTransport.Contains("type")
+                                  select v.Name).ToList();
             return listOfStations;
         }
     }

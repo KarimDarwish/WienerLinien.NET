@@ -50,10 +50,33 @@
         Value="10 5 20 5" />
       <Setter
         Property="FontSize"
-        Value="22" />
+        Value="19" />
       <Setter
         Property="Padding"
-        Value="3 0 3 0" />
+        Value="3 3 3 3" />
+    </Style>
+
+    <Style
+      x:Key="ComboBoxStyle"
+      TargetType="{x:Type ComboBox}">
+      <Setter
+        Property="VerticalAlignment"
+        Value="Center" />
+      <Setter
+        Property="HorizontalAlignment"
+        Value="Stretch" />
+      <Setter
+        Property="Foreground"
+        Value="Black" />
+      <Setter
+        Property="Margin"
+        Value="10 5 120 5" />
+      <Setter
+        Property="FontSize"
+        Value="19" />
+      <Setter
+        Property="Padding"
+        Value="3 3 3 3" />
     </Style>
   </Window.Resources>
   <Grid>
@@ -110,6 +133,28 @@
       ItemsSource="{Binding TestItems}"
       SelectedItem="{Binding TestText, Mode=TwoWay}" />
 
+    <ComboBox
+      x:Name="LineName"
+      Style="{StaticResource ComboBoxStyle}"
+      Grid.Row="2"
+      Grid.Column="1">
+
+    </ComboBox>
+
+    <ComboBox
+      Style="{StaticResource ComboBoxStyle}"
+      Grid.Row="3"
+      Grid.Column="1">
+
+    </ComboBox>
+
+    <ComboBox
+      Style="{StaticResource ComboBoxStyle}"
+      Grid.Row="4"
+      Grid.Column="1">
+
+    </ComboBox>
+
     <Button
       Grid.Row="5"
       Grid.Column="1"
@@ -119,3 +164,4 @@
     
   </Grid>
 </Window>
+
