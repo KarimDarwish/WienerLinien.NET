@@ -130,11 +130,14 @@
       Grid.Row="1"
       Grid.Column="1"
       Style="{StaticResource TextBoxStyle}"
+      
       ItemsSource="{Binding TestItems}"
-      SelectedItem="{Binding TestText, Mode=TwoWay}" />
+      SelectedItem="{Binding TestText, Mode=TwoWay}"
+      DropDownClosed="StopName_DropDownClosed" />
 
     <ComboBox
       x:Name="LineName"
+      ItemsSource="{Binding LineNameColl}"
       Style="{StaticResource ComboBoxStyle}"
       Grid.Row="2"
       Grid.Column="1">

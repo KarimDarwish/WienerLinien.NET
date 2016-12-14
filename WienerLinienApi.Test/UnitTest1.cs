@@ -17,6 +17,13 @@ namespace WienerLinienApi.Test
         public async Task GetStations()
         {
             var stations = await Stations.GetAllStationsAsync();
+            foreach (var item in stations)
+            {
+                foreach (var item1 in item.Platforms)
+                {
+                    Console.WriteLine(item1.MeansOfTransport + " " + item1.Name);
+                }
+            }
             Assert.IsNotNull(stations);
         }
         public async Task GetMonitorData()

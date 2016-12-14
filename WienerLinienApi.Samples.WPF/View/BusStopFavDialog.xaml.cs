@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WienerLinienApi.Samples.WPF.Model;
 
 namespace WienerLinienApi.Samples.WPF.View
 {
@@ -23,6 +24,14 @@ namespace WienerLinienApi.Samples.WPF.View
         public BusStopFavDialog()
         {
             InitializeComponent();
+            
+        }
+
+        private async void StopName_DropDownClosed(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        {
+            Console.WriteLine(StopName.Text);
+            var item = await new NewFavoriteStop("bus").GetLinesFromStation(StopName.Text,"");
+            LineName.ItemsSource = item;
             
         }
     }

@@ -14,6 +14,8 @@ namespace WienerLinienApi.Samples.WPF.View
 
         public IEnumerable<string> TestItems { get; set; }
 
+        public IEnumerable<string> LineNameColl { get; set; }
+
         public AutocomFile()
         {
             var init = new NewFavoriteStop("bus");
@@ -21,6 +23,9 @@ namespace WienerLinienApi.Samples.WPF.View
             {
                 TestItems = (await init.GetStaionNames("bus"));
             }).Wait();
+
+            
+            
         }
     }
 }
