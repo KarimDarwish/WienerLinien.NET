@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WienerLinienApi.Information;
 
 namespace WienerLinienApi.Model
 {
@@ -65,7 +66,7 @@ namespace WienerLinienApi.Model
             /// <summary>
             /// returns the meansoftransport of the line
             /// </summary>
-            public string MeansOfTransport { get; set; }
+            public MeansOfTransport MeansOfTransport { get; set; }
             /// <summary>
             /// The RBL number of the platform
             /// </summary>

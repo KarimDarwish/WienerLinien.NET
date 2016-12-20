@@ -36,6 +36,7 @@ namespace WienerLinienApi.Samples.WPF.View
 
         private async void LineName_OnDropDownClosed(object sender, EventArgs e)
         {
+            
             var lineItems = await NewFavoriteStop.GetDirections(StopName.Text, LineName.Text, "");
             Direction.ItemsSource = lineItems;
         }
