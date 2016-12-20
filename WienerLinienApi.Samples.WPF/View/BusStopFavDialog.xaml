@@ -54,6 +54,9 @@
       <Setter
         Property="Padding"
         Value="3 3 3 3" />
+      <Setter
+        Property="BorderBrush"
+        Value="#FFFF6400" />
     </Style>
 
     <Style
@@ -77,6 +80,9 @@
       <Setter
         Property="Padding"
         Value="3 3 3 3" />
+      <Setter
+        Property="Background"
+        Value="#FFFF6400" />
     </Style>
   </Window.Resources>
   <Grid>
@@ -144,11 +150,16 @@
     </ComboBox>
     
     <Button
+      x:Name="OkButton"
       Grid.Row="4"
       Grid.Column="1"
       Margin="90 30 30 30"
       Content="OK"
-      ></Button>
+      BorderBrush="#FFFF6400"
+      Background="#FFFF8B00"
+      >
+      
+    </Button>
     
   </Grid>
 </Window>
