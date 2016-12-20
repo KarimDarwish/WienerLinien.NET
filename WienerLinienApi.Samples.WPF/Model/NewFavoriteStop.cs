@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WienerLinienApi.Information;
 using WienerLinienApi.Model;
@@ -18,17 +19,17 @@ namespace WienerLinienApi.Samples.WPF.Model
         public static int Platforms { get; set; }
         public static int[] TimesToWait { get; set; }
         public static List<string> BusStops { get; set; }
-        public static WienerLinienContext context = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
+        public static WienerLinienContext Context = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
         private static List<Station> stations;
 
         public static async Task<List<string>> GetStaionNames(string type)
         {
             stations = await Stations.GetAllStationsAsync();
-
+            var mot = MeansOfTransportWrapper.GetMeansOfTransportFromString(type);
             var listOfStations = (from v in stations
-                from p in v.Platforms
-                where p.MeansOfTransport == "4"
-                select v.Name).Distinct().ToList();
+                                  from p in v.Platforms
+                                  where p.MeansOfTransport == mot
+                                  select v.Name).Distinct().ToList();
             return listOfStations;
         }
 
@@ -39,12 +40,12 @@ namespace WienerLinienApi.Samples.WPF.Model
                 stations = await Stations.GetAllStationsAsync();
             }
             var lines = (from v in stations
-                where v.Name == station
-                from p in v.Platforms
-                where p.MeansOfTransport == "4"
-                group p by p.Name
+                         where v.Name == station
+                         from p in v.Platforms
+                         where p.MeansOfTransport == MeansOfTransport.Bus
+                         group p by p.Name
                 into linesList
-                select linesList.Key).ToList();
+                         select linesList.Key).ToList();
             return lines;
 
         }
@@ -55,35 +56,44 @@ namespace WienerLinienApi.Samples.WPF.Model
             {
                 stations = await Stations.GetAllStationsAsync();
             }
-          
+            Console.WriteLine("Station=" + station + "&line=" + line + "&type=" + type);
             var directions = (from v in stations
-                where v.Name == station
-                from p in v.Platforms
-                where p.Name == line
-                select p.RblNumber.ToString()).ToList();
+                              where v.Name == station
+                              from p in v.Platforms
+                              where p.Name == line
+                              select p.RblNumber.ToString()).ToList();
 
-           var rbls = directions.Select(int.Parse).ToList();
+            var rbls = directions.Select(int.Parse).ToList();
 
-            var rtd = new RealtimeData.RealtimeData(context);
+            var rtd = new RealtimeData.RealtimeData(Context);
 
             var parameters = new Parameters.MonitorParameters() { Rbls = rbls };
-
+            //todo: save this so you dont have to reload
             var monitorInfo = await rtd.GetMonitorDataAsync(parameters);
             var strings = new List<string>();
             var b =
-                monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "R")
-                    .Select(i => i.Lines[0].Towards)
+                monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "R" && i.Lines[0].Name == line).ToList();
+            if (b.Count > 0)
+            {
+                strings.Add(ReplaceString(b.Select(i => i.Lines[0].Towards)
                     .ToList()
-                    .First();
-            var c = monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "H")
-                    .Select(i => i.Lines[0].Towards)
+                    .First()+ " "));
+            }
+            var c =
+                monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "H" && i.Lines[0].Name == line).ToList();
+            if (c.Count > 0)
+            {
+                strings.Add(ReplaceString(c.Select(i => i.Lines[0].Towards)
                     .ToList()
-                    .First();
-            strings.Add(b);
-            strings.Add(c);
+                    .First() + " "));
+            }         
             return strings;
+        }
 
-
+        private static string ReplaceString(string towards)
+        {
+            var a = Regex.Replace(towards, "([A-Z]+ )", i => "(" + i.Value.Trim() + ") ");
+            return a;
         }
     }
 }

@@ -36,10 +36,9 @@ namespace WienerLinienApi.Samples.WPF.View
 
         private async void LineName_OnDropDownClosed(object sender, EventArgs e)
         {
-            if (! string.IsNullOrEmpty(StopName.Text) || ! string.IsNullOrEmpty(LineName.Text)) { 
-                var lineItems = await NewFavoriteStop.GetDirections(StopName.Text, LineName.Text, "");
-                Direction.ItemsSource = lineItems;
-            }
+            
+            var lineItems = await NewFavoriteStop.GetDirections(StopName.Text, LineName.Text, "");
+            Direction.ItemsSource = lineItems;
         }
     }
 }
