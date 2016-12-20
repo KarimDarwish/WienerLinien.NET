@@ -20,7 +20,8 @@ namespace WienerLinienApi.Samples.WPF.View
     /// </summary>
     public partial class BusStopFavDialog : Window
     {
-        
+        public string SelectedLine { get; set; }
+
         public BusStopFavDialog()
         {
             InitializeComponent();
@@ -29,10 +30,14 @@ namespace WienerLinienApi.Samples.WPF.View
 
         private async void StopName_DropDownClosed(object sender, RoutedPropertyChangedEventArgs<bool> e)
         {
-            Console.WriteLine(StopName.Text);
-            var item = await new NewFavoriteStop("bus").GetLinesFromStation(StopName.Text,"");
-            LineName.ItemsSource = item;
-            
+            var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text,"");
+            LineName.ItemsSource = lineItems;
+        }
+
+        private async void LineName_OnDropDownClosed(object sender, EventArgs e)
+        {
+            var lineItems = await NewFavoriteStop.GetDirections(StopName.Text, LineName.Text, "");
+            Direction.ItemsSource = lineItems;
         }
     }
 }

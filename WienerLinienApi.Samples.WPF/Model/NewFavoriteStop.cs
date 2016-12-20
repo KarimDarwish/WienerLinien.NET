@@ -9,46 +9,75 @@ using WienerLinienApi.Model;
 
 namespace WienerLinienApi.Samples.WPF.Model
 {
-    class NewFavoriteStop
+    static class NewFavoriteStop
     {
-        public string StopName { get; set; }
-        public string Line { get; set; }
-        public string StopType { get; set; }
-        public int Platforms { get; set; }
-        public int[] TimesToWait { get; set; }
-        public List<string> BusStops { get; set; }
-        private List<Station> stations;
-        public NewFavoriteStop(string type)
-        {
+        public static string StopName { get; set; }
+        public static string Line { get; set; }
+        public static string StopType { get; set; }
+        public static int Platforms { get; set; }
+        public static int[] TimesToWait { get; set; }
+        public static List<string> BusStops { get; set; }
+        public static WienerLinienContext context = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
+        private static List<Station> stations;
 
-        }
-
-        public async Task<List<string>> GetStaionNames(string type)
+        public static async Task<List<string>> GetStaionNames(string type)
         {
-            var context = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
             stations = await Stations.GetAllStationsAsync();
 
             var listOfStations = (from v in stations
-                                  from p in v.Platforms
-                                  where p.MeansOfTransport == "4"
-
-                                  select v.Name).Distinct().ToList();
+                from p in v.Platforms
+                where p.MeansOfTransport == "4"
+                select v.Name).Distinct().ToList();
             return listOfStations;
         }
 
-        public async Task<List<string>> GetLinesFromStation(string station, string type)
+        public static async Task<List<string>> GetLinesFromStation(string station, string type)
         {
             if (stations == null)
             {
                 stations = await Stations.GetAllStationsAsync();
             }
             var lines = (from v in stations
-                         where v.Name == station
-                         from p in v.Platforms
-                         where p.MeansOfTransport == "4"
-                         select p.Name).ToList();
+                where v.Name == station
+                from p in v.Platforms
+                where p.MeansOfTransport == "4"
+                group p by p.Name
+                into linesList
+                select linesList.Key).ToList();
             return lines;
-            
+
+        }
+
+        public static async Task<List<string>> GetDirections(string station, string line, string type)
+        {
+            if (stations == null)
+            {
+                stations = await Stations.GetAllStationsAsync();
+            }
+            Console.WriteLine("|" + line + "|");
+            List<string> directions = (from v in stations
+                where v.Name == station
+                from p in v.Platforms
+                where p.Name == line
+                select p.RblNumber.ToString()).ToList();
+
+           var rbls = directions.Select(int.Parse).ToList();
+
+            var rtd = new RealtimeData.RealtimeData(context);
+
+            var parameters = new Parameters.MonitorParameters() { Rbls = rbls };
+
+            var monitorInfo = await rtd.GetMonitorDataAsync(parameters);
+
+            var finalDestinations = new List<string>();
+
+            foreach (var v in monitorInfo.Data.Monitors[0].Lines)
+            {
+                finalDestinations.Add(v.Towards);
+            }
+
+            return finalDestinations;
+
         }
     }
 }

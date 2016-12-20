@@ -9,7 +9,7 @@
   xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit"
   mc:Ignorable="d"
   Title="BusStopFavDialog"
-  Height="500"
+  Height="400"
   Width="500"
   ResizeMode="NoResize" >
   <Window.DataContext>
@@ -91,8 +91,6 @@
         Height="5*" />
       <RowDefinition
         Height="5*" />
-      <RowDefinition
-        Height="5*" />
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition
@@ -119,47 +117,34 @@
       Style="{StaticResource TextLabelStyle}"
       Content="Direction" />
 
-    <Label
-      Grid.Row="4"
-      Grid.Column="0"
-      Style="{StaticResource TextLabelStyle}"
-      Content="Platform" />
-
     <controls:AutoCompleteBox
       x:Name="StopName"
       Grid.Row="1"
       Grid.Column="1"
       Style="{StaticResource TextBoxStyle}"
-      
       ItemsSource="{Binding TestItems}"
       SelectedItem="{Binding TestText, Mode=TwoWay}"
       DropDownClosed="StopName_DropDownClosed" />
-
     <ComboBox
       x:Name="LineName"
       ItemsSource="{Binding LineNameColl}"
       Style="{StaticResource ComboBoxStyle}"
+      SelectedValue="{Binding SelectedLine , Mode=TwoWay}"
+      DropDownClosed="LineName_OnDropDownClosed"
       Grid.Row="2"
       Grid.Column="1">
-
     </ComboBox>
 
     <ComboBox
+      x:Name="Direction"
+      ItemsSource="{Binding DirectionColl}"
       Style="{StaticResource ComboBoxStyle}"
       Grid.Row="3"
       Grid.Column="1">
-
     </ComboBox>
-
-    <ComboBox
-      Style="{StaticResource ComboBoxStyle}"
-      Grid.Row="4"
-      Grid.Column="1">
-
-    </ComboBox>
-
+    
     <Button
-      Grid.Row="5"
+      Grid.Row="4"
       Grid.Column="1"
       Margin="90 30 30 30"
       Content="OK"
