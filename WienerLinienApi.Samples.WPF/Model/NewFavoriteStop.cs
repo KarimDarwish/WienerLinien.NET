@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -54,8 +55,8 @@ namespace WienerLinienApi.Samples.WPF.Model
             {
                 stations = await Stations.GetAllStationsAsync();
             }
-            Console.WriteLine("|" + line + "|");
-            List<string> directions = (from v in stations
+          
+            var directions = (from v in stations
                 where v.Name == station
                 from p in v.Platforms
                 where p.Name == line
@@ -68,15 +69,20 @@ namespace WienerLinienApi.Samples.WPF.Model
             var parameters = new Parameters.MonitorParameters() { Rbls = rbls };
 
             var monitorInfo = await rtd.GetMonitorDataAsync(parameters);
+            var strings = new List<string>();
+            var b =
+                monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "R")
+                    .Select(i => i.Lines[0].Towards)
+                    .ToList()
+                    .First();
+            var c = monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "H")
+                    .Select(i => i.Lines[0].Towards)
+                    .ToList()
+                    .First();
+            strings.Add(b);
+            strings.Add(c);
+            return strings;
 
-            var finalDestinations = new List<string>();
-
-            foreach (var v in monitorInfo.Data.Monitors[0].Lines)
-            {
-                finalDestinations.Add(v.Towards);
-            }
-
-            return finalDestinations;
 
         }
     }
