@@ -58,7 +58,7 @@
         Property="BorderBrush"
         Value="#FFFF6400" />
     </Style>
-
+    
     <Style
       x:Key="ComboBoxStyle"
       TargetType="{x:Type ComboBox}">
@@ -84,6 +84,7 @@
         Property="Background"
         Value="#FFFF6400" />
     </Style>
+    
   </Window.Resources>
   <Grid>
     <Grid.RowDefinitions>
@@ -130,7 +131,25 @@
       Style="{StaticResource TextBoxStyle}"
       ItemsSource="{Binding TestItems}"
       SelectedItem="{Binding TestText, Mode=TwoWay}"
-      DropDownClosed="StopName_DropDownClosed" />
+      DropDownClosed="StopName_DropDownClosed"
+      BorderThickness="1">
+      <controls:AutoCompleteBox.Triggers>
+        <EventTrigger
+          RoutedEvent="Button.MouseEnter">
+          <BeginStoryboard>
+            <Storyboard>
+              <ColorAnimation
+                Storyboard.TargetName="StopName"
+                To="Green"
+                Storyboard.TargetProperty="(controls:AutoCompleteBox.BorderBrush).(Color)"
+                FillBehavior="Stop"
+                Duration="0:0:1" />
+            </Storyboard>
+          </BeginStoryboard>
+        </EventTrigger>
+      </controls:AutoCompleteBox.Triggers>
+    </controls:AutoCompleteBox>
+   
     <ComboBox
       x:Name="LineName"
       ItemsSource="{Binding LineNameColl}"
@@ -158,9 +177,10 @@
       BorderBrush="#FFFF6400"
       Background="#FFFF8B00"
       >
-      
     </Button>
     
   </Grid>
 </Window>
+
+
 
