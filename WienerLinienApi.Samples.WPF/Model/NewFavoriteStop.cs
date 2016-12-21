@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WienerLinienApi.Information;
 using WienerLinienApi.Model;
+using WienerLinienApi.RealtimeData.Monitor;
 
 namespace WienerLinienApi.Samples.WPF.Model
 {
@@ -21,6 +22,7 @@ namespace WienerLinienApi.Samples.WPF.Model
         public static List<string> BusStops { get; set; }
         public static WienerLinienContext Context = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
         private static List<Station> stations;
+        private static MonitorData data { get; set; }
 
         public static async Task<List<string>> GetStaionNames(string type)
         {
@@ -68,8 +70,8 @@ namespace WienerLinienApi.Samples.WPF.Model
             var rtd = new RealtimeData.RealtimeData(Context);
 
             var parameters = new Parameters.MonitorParameters() { Rbls = rbls };
-            //todo: save this so you dont have to reload
             var monitorInfo = await rtd.GetMonitorDataAsync(parameters);
+            data = monitorInfo;
             var strings = new List<string>();
             var b =
                 monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "R" && i.Lines[0].Name == line).ToList();
@@ -86,8 +88,13 @@ namespace WienerLinienApi.Samples.WPF.Model
                 strings.Add(ReplaceString(c.Select(i => i.Lines[0].Towards)
                     .ToList()
                     .First() + " "));
-            }         
+            }
             return strings;
+        }
+
+        private static string addView()
+        {
+
         }
 
         private static string ReplaceString(string towards)

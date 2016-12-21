@@ -16,6 +16,8 @@
     <local:AutocomFile />
   </Window.DataContext>
   <Window.Resources>
+    
+
     <Style
       x:Key="TextLabelStyle"
       TargetType="{x:Type Control}">
@@ -83,6 +85,9 @@
       <Setter
         Property="Background"
         Value="#FFFF6400" />
+      <Setter
+        Property="BorderBrush"
+        Value="#FFFF6400" />
     </Style>
     
   </Window.Resources>
@@ -133,21 +138,6 @@
       SelectedItem="{Binding TestText, Mode=TwoWay}"
       DropDownClosed="StopName_DropDownClosed"
       BorderThickness="1">
-      <controls:AutoCompleteBox.Triggers>
-        <EventTrigger
-          RoutedEvent="Button.MouseEnter">
-          <BeginStoryboard>
-            <Storyboard>
-              <ColorAnimation
-                Storyboard.TargetName="StopName"
-                To="Green"
-                Storyboard.TargetProperty="(controls:AutoCompleteBox.BorderBrush).(Color)"
-                FillBehavior="Stop"
-                Duration="0:0:1" />
-            </Storyboard>
-          </BeginStoryboard>
-        </EventTrigger>
-      </controls:AutoCompleteBox.Triggers>
     </controls:AutoCompleteBox>
    
     <ComboBox
@@ -176,6 +166,7 @@
       Content="OK"
       BorderBrush="#FFFF6400"
       Background="#FFFF8B00"
+      Click="OkButton_OnClick"
       >
     </Button>
     

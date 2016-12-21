@@ -30,15 +30,28 @@ namespace WienerLinienApi.Samples.WPF.View
 
         private async void StopName_DropDownClosed(object sender, RoutedPropertyChangedEventArgs<bool> e)
         {
-            var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text,"");
-            LineName.ItemsSource = lineItems;
+            if (!string.IsNullOrEmpty(StopName.Text))
+            {
+                var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text, "");
+                LineName.ItemsSource = lineItems;
+            }
         }
 
         private async void LineName_OnDropDownClosed(object sender, EventArgs e)
         {
-            
-            var lineItems = await NewFavoriteStop.GetDirections(StopName.Text, LineName.Text, "");
-            Direction.ItemsSource = lineItems;
+            if (!string.IsNullOrEmpty(StopName.Text) && !string.IsNullOrEmpty(LineName.Text))
+            {
+                var lineItems = await NewFavoriteStop.GetDirections(StopName.Text, LineName.Text, "");
+                Direction.ItemsSource = lineItems;
+            }
+        }
+
+        private void OkButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(StopName.Text) && !string.IsNullOrEmpty(LineName.Text))
+            {
+
+            }
         }
     }
 }

@@ -20,11 +20,13 @@ namespace WienerLinienApi.Samples.WPF.View
     /// </summary>
     public partial class UserControl1 : UserControl
     {
-        public UserControl1()
+        public UserControl1(string Stop, string Line, string newxtBus)
         {
             InitializeComponent();
 
-            BusStopNameLabel.Text = "Derp";
+            BusStopNameLabel.Text = Stop;
+            LineName.Text = Line;
+            NextBus.Text = newxtBus;
         }
     }
 }
