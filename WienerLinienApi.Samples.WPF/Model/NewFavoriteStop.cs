@@ -22,7 +22,7 @@ namespace WienerLinienApi.Samples.WPF.Model
         public static List<string> BusStops { get; set; }
         public static WienerLinienContext Context = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
         private static List<Station> stations;
-        private static MonitorData data { get; set; }
+        private static MonitorData Data { get; set; }
 
         public static async Task<List<string>> GetStaionNames(string type)
         {
@@ -52,13 +52,13 @@ namespace WienerLinienApi.Samples.WPF.Model
 
         }
 
-        public static async Task<List<string>> GetDirections(string station, string line, string type)
+        public static async Task<Dictionary<string, string>> GetDirections(string station, string line)
         {
             if (stations == null)
             {
                 stations = await Stations.GetAllStationsAsync();
             }
-            Console.WriteLine("Station=" + station + "&line=" + line + "&type=" + type);
+            Console.WriteLine("Station=" + station + "&line=" + line + "&type=");
             var directions = (from v in stations
                               where v.Name == station
                               from p in v.Platforms
@@ -71,13 +71,13 @@ namespace WienerLinienApi.Samples.WPF.Model
 
             var parameters = new Parameters.MonitorParameters() { Rbls = rbls };
             var monitorInfo = await rtd.GetMonitorDataAsync(parameters);
-            data = monitorInfo;
-            var strings = new List<string>();
+            Data = monitorInfo;
+            var strings = new  Dictionary<string, string>();
             var b =
                 monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "R" && i.Lines[0].Name == line).ToList();
             if (b.Count > 0)
             {
-                strings.Add(ReplaceString(b.Select(i => i.Lines[0].Towards)
+                strings.Add("R", ReplaceString(b.Select(i => i.Lines[0].Towards)
                     .ToList()
                     .First()+ " "));
             }
@@ -85,16 +85,23 @@ namespace WienerLinienApi.Samples.WPF.Model
                 monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "H" && i.Lines[0].Name == line).ToList();
             if (c.Count > 0)
             {
-                strings.Add(ReplaceString(c.Select(i => i.Lines[0].Towards)
+                strings.Add("H", ReplaceString(c.Select(i => i.Lines[0].Towards)
                     .ToList()
                     .First() + " "));
             }
             return strings;
         }
 
-        private static string addView()
+        public static string GetTimeForNextBus(string station, string line, string direction)
         {
-
+            Console.WriteLine("-----------------");
+            var time = Data.Data.Monitors.Where(i => i.Lines[0].Direction == direction && i.Lines[0].Name == line).ToList();
+            Console.WriteLine(time.Count);
+            foreach (var v in time)
+            {
+                Console.WriteLine(v.ToString());
+            }
+            return "";
         }
 
         private static string ReplaceString(string towards)

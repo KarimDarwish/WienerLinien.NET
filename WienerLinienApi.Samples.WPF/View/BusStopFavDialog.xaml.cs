@@ -21,6 +21,7 @@ namespace WienerLinienApi.Samples.WPF.View
     public partial class BusStopFavDialog : Window
     {
         public string SelectedLine { get; set; }
+        public BusStopView BSV { get; set; }
 
         public BusStopFavDialog()
         {
@@ -41,8 +42,8 @@ namespace WienerLinienApi.Samples.WPF.View
         {
             if (!string.IsNullOrEmpty(StopName.Text) && !string.IsNullOrEmpty(LineName.Text))
             {
-                var lineItems = await NewFavoriteStop.GetDirections(StopName.Text, LineName.Text, "");
-                Direction.ItemsSource = lineItems;
+                var lineItems = await NewFavoriteStop.GetDirections(StopName.Text, LineName.Text);
+                Direction.ItemsSource = lineItems.Values;
             }
         }
 
@@ -50,7 +51,8 @@ namespace WienerLinienApi.Samples.WPF.View
         {
             if (!string.IsNullOrEmpty(StopName.Text) && !string.IsNullOrEmpty(LineName.Text))
             {
-
+                var x = NewFavoriteStop.GetTimeForNextBus(StopName.Text, LineName.Text, Direction.Text);
+                //BSV = new BusStopView(StopName.Text, LineName.Text, );
             }
         }
     }
