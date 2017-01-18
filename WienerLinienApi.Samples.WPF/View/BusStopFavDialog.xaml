@@ -81,7 +81,7 @@
         Value="19" />
       <Setter
         Property="Padding"
-        Value="3 3 3 3" />
+        Value="3" />
       <Setter
         Property="Background"
         Value="#FFFF6400" />

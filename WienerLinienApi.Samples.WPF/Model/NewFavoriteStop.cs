@@ -24,7 +24,7 @@ namespace WienerLinienApi.Samples.WPF.Model
         private static List<Station> stations;
         private static MonitorData data { get; set; }
 
-        public static async Task<List<string>> GetStaionNames(string type)
+        public static async Task<List<string>> GetStationNames(string type)
         {
             stations = await Stations.GetAllStationsAsync();
             var mot = MeansOfTransportWrapper.GetMeansOfTransportFromString(type);
@@ -92,9 +92,34 @@ namespace WienerLinienApi.Samples.WPF.Model
             return strings;
         }
 
-        private static string addView()
+//        private static string addView()
+//        {
+//
+//        
+            /**
+             * do not forget to delete this!
+             */
+            public static string getBusNameWithTheGhettoTouch(string station)
         {
+            string thestring = null;
+            switch (station)
+            {
+                case "Pilgramgasse":
+                    thestring = "theboyisonfire";
+                    break;
+                case "Ober St. Veit":
+                    thestring = "doesthatniggawanttofight?";
+                    break;
+                case "Unter St. Veit":
+                    thestring = "ohnoshedidnt!";
+                    break;
+                case "lonely":
+                    thestring = "givemesomeonetolivewithsleepwithtalkwithdoandshareeverythingwith";
+                    break;
+            }
 
+            Console.WriteLine(thestring);
+            return thestring;
         }
 
         private static string ReplaceString(string towards)

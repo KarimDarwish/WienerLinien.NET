@@ -8,7 +8,7 @@ namespace WienerLinienApi.Samples.WPF.View
     {
         public AutocomFile()
         {
-            Task.Run(async () => { TestItems = await NewFavoriteStop.GetStaionNames("ptBusCity"); }).Wait();
+            Task.Run(async () => { TestItems = await NewFavoriteStop.GetStationNames("ptBusCity"); }).Wait();
         }
 
         public string TestText { get; set; }
