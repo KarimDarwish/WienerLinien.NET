@@ -553,5 +553,10 @@
       </Grid>
     </Button>
 
+    <ContentControl
+      Grid.Column="0"
+      Grid.Row="0"
+      Content="{Binding FirstStop}" />
+
   </Grid>
 </Window>

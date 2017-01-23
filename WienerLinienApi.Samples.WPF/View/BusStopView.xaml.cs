@@ -18,14 +18,14 @@ namespace WienerLinienApi.Samples.WPF.View
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class BusStopView : UserControl
     {
-        public UserControl1(string Stop, string Line, string newxtBus)
+        public BusStopView(string stop, string line, string newxtBus)
         {
             InitializeComponent();
 
-            BusStopNameLabel.Text = Stop;
-            LineName.Text = Line;
+            BusStopNameLabel.Text = stop;
+            LineName.Text = line;
             NextBus.Text = newxtBus;
         }
     }
