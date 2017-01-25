@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -43,7 +44,7 @@ namespace ConsoleApplicationWienerLinienAPI
             Console.WriteLine();
 
             // the desired station
-            var SelectedStation = allStations.Find(x => x.Name.Contains(station));
+            var SelectedStation = allStations.Find(x => station != null && x.Name.Contains(station));
 
             var listLines = new List<Station.Platform>();
 
