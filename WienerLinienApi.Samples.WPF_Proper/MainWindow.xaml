@@ -7,31 +7,96 @@
         xmlns:localm="clr-namespace:WienerLinienApi.Samples.WPF_Proper.Model"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="700"
-        Width="900"
+        Height="1440"
+        Width="2560"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
   <Window.Resources>
+    <Storyboard x:Key="LoginAnimation"
+                Completed="Login_Storyboard_Completed">
+      <DoubleAnimation Storyboard.TargetName="LoginButton"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="620"
+                       Duration="0:0:3"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="LoginButton"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                       From="0"
+                       To="-1220"
+                       Duration="0:0:3"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="LoginButton"
+                       Storyboard.TargetProperty="Width"
+                       From="100"
+                       To="1000"
+                       Duration="0:0:3"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="LoginButton"
+                       Storyboard.TargetProperty="Height"
+                       From="100"
+                       To="1000"
+                       Duration="0:0:3"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="MainGrid"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:2"
+                       AutoReverse="False" />
+    </Storyboard>
     <ObjectDataProvider x:Key="notifyingDate"
                         ObjectType="{x:Type localm:NotifyingDateTime}" />
     <localm:ClockConverter x:Key="clockConverter" />
   </Window.Resources>
-  <Grid>
+  <Grid x:Name="MainGrid">
     <Grid.Background>
-      <ImageBrush ImageSource="Resourches/Background.jpg"
+      <ImageBrush ImageSource="C:\Users\johan\Source\Repos\WienerLinien.NET\WienerLinienApi.Samples.WPF_Proper\Resourches\Background.jpg"
                   Opacity="0.5"
                   Stretch="UniformToFill" />
     </Grid.Background>
-
-    <Grid.RowDefinitions>
-
-    </Grid.RowDefinitions>
+    <Grid.RowDefinitions></Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="1*" />
       <ColumnDefinition Width="1*" />
       <ColumnDefinition Width="1*" />
     </Grid.ColumnDefinitions>
-
+    <Button x:Name="LoginButton"
+            Grid.Column="4"
+            Grid.Row="2"
+            Panel.ZIndex="10"
+            Width="100"
+            Height="100"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,20,20,0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="LoginButton_Click">
+      <Button.RenderTransform>
+        <TranslateTransform />
+      </Button.RenderTransform>
+      <Button.Template>
+        <ControlTemplate TargetType="Button">
+          <Grid>
+            <Ellipse x:Name="LoginBackground"
+                     Stroke="{x:Null}"
+                     StrokeThickness="2"
+                     Fill="#FFFFFFFF" />
+            <Ellipse Stroke="{x:Null}"
+                     Margin="5 5 5 5"
+                     StrokeThickness="2">
+              <Ellipse.Fill>
+                <ImageBrush ImageSource="Resourches/head-icon-0.png"
+                            Stretch="Fill"></ImageBrush>
+              </Ellipse.Fill>
+            </Ellipse>
+            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+          </Grid>
+        </ControlTemplate>
+      </Button.Template>
+    </Button>
     <Button x:Name="AddBusButton"
             Grid.Column="4"
             Grid.Row="2"
@@ -61,8 +126,7 @@
                     <Trigger Property="IsMouseOver"
                              Value="True">
                       <Setter Property="Fill"
-                              Value="#FFFF8E46">
-                      </Setter>
+                              Value="#FFFF8E46"></Setter>
                     </Trigger>
                   </Style.Triggers>
                 </Style>
@@ -92,7 +156,6 @@
         </Canvas>
       </Viewbox>
     </Button>
-
     <Button x:Name="AddTramButton"
             Grid.Column="4"
             Grid.Row="2"
@@ -122,8 +185,7 @@
                     <Trigger Property="IsMouseOver"
                              Value="True">
                       <Setter Property="Fill"
-                              Value="#FFFF8E46">
-                      </Setter>
+                              Value="#FFFF8E46"></Setter>
                     </Trigger>
                   </Style.Triggers>
                 </Style>
@@ -156,7 +218,6 @@
         </Canvas>
       </Viewbox>
     </Button>
-
     <Button x:Name="AddTubeButton"
             Grid.Column="4"
             Grid.Row="2"
@@ -187,8 +248,7 @@
                     <Trigger Property="IsMouseOver"
                              Value="True">
                       <Setter Property="Fill"
-                              Value="#FFFF8E46">
-                      </Setter>
+                              Value="#FFFF8E46"></Setter>
                     </Trigger>
                   </Style.Triggers>
                 </Style>
@@ -220,7 +280,6 @@
         </Canvas>
       </Viewbox>
     </Button>
-
     <Button x:Name="AddTrainButton"
             Grid.Column="4"
             Grid.Row="2"
@@ -251,8 +310,7 @@
                     <Trigger Property="IsMouseOver"
                              Value="True">
                       <Setter Property="Fill"
-                              Value="#FFFF8E46">
-                      </Setter>
+                              Value="#FFFF8E46"></Setter>
                     </Trigger>
                   </Style.Triggers>
                 </Style>
@@ -282,8 +340,8 @@
         </Canvas>
       </Viewbox>
     </Button>
-
-    <Button Grid.Column="4"
+    <Button x:Name="AddButton"
+            Grid.Column="4"
             Grid.Row="2"
             Width="100"
             Height="100"
@@ -292,7 +350,6 @@
             Margin="0,0,20,20"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center">
-
       <Button.Triggers>
         <EventTrigger RoutedEvent="Button.MouseEnter">
           <BeginStoryboard>
@@ -439,7 +496,6 @@
           </BeginStoryboard>
         </EventTrigger>
       </Button.Triggers>
-
       <Button.Template>
         <ControlTemplate TargetType="Button">
           <Grid>
@@ -462,16 +518,12 @@
                FontSize="65"
                Foreground="White"
                IsEnabled="False"
-               RenderTransformOrigin="0.5,0.5">
-        </Label>
+               RenderTransformOrigin="0.5,0.5"></Label>
         <Grid.RenderTransform>
-          <RotateTransform Angle="0">
-
-          </RotateTransform>
+          <RotateTransform Angle="0"></RotateTransform>
         </Grid.RenderTransform>
       </Grid>
     </Button>
-
     <!--   Anlog Clock - Digital Clock - Date Field   -->
     <Grid Grid.Column="1">
       <Grid.RowDefinitions>
@@ -483,9 +535,15 @@
             Width="10"
             Background="Black" />
       <Grid Grid.Row="1">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="393*" />
+          <RowDefinition Height="313*" />
+        </Grid.RowDefinitions>
         <Viewbox VerticalAlignment="Top"
                  HorizontalAlignment="Center"
-                 Height="250">
+                 Height="350"
+                 Panel.ZIndex="2"
+                 Margin="250,0,250.667,0">
           <Canvas  Width="300"
                    Height="300"
                    Margin="-30">
@@ -531,9 +589,22 @@
                   </RotateTransform.Angle>
                 </RotateTransform>
               </Line.RenderTransform>
-            </Line>           
+            </Line>
           </Canvas>
         </Viewbox>
+        <Grid Margin="0,213,-0.333,312.333"
+              Height="180"
+              Grid.RowSpan="2">
+          <Rectangle Width="10"
+                     Fill="Black"
+                     Panel.ZIndex="0"
+                     Margin="-150 0 0 0" />
+          <Rectangle Width="10"
+                     Fill="Black"
+                     Panel.ZIndex="0"
+                     Margin="150 0 0 0" />
+        </Grid>
+        <Rectangle Grid.Row="1"></Rectangle>
       </Grid>
     </Grid>
   </Grid>

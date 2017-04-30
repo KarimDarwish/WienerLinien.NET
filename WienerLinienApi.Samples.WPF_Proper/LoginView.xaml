@@ -1,0 +1,401 @@
+﻿<UserControl x:Class="WienerLinienApi.Samples.WPF_Proper.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WienerLinienApi.Samples.WPF_Proper"
+             mc:Ignorable="d"
+             d:DesignHeight="1440"
+             d:DesignWidth="2560">
+  <UserControl.Resources>
+    <Storyboard x:Key="LoginPrep"
+                Completed="LoginPrep_Storyboard_Completed">
+      <DoubleAnimation Storyboard.TargetName="Username"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0.001"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Password"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Titel"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Firstname"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Lastname"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Email"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="ConfirmPassword"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Login"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="-300"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="SignUp"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="-300"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Login"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="SignUp"
+                       Storyboard.TargetProperty="Opacity"
+                       From="1.0"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+    </Storyboard>
+    <Storyboard x:Key="LoginApear">
+      <!-- Block 1 -->
+      <DoubleAnimation Storyboard.TargetName="Username"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Username"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="100"
+                       To="0"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+      <!-- Block 2 -->
+      <DoubleAnimation Storyboard.TargetName="Password"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       BeginTime="0:0:0.5"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Password"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="100"
+                       To="0"
+                       BeginTime="0:0:0.5"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+      <!-- Block 3 -->
+      <DoubleAnimation Storyboard.TargetName="Login"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       BeginTime="0:0:1"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Login"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="-200"
+                       To="-300"
+                       BeginTime="0:0:1"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="SignUp"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       BeginTime="0:0:1"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="SignUp"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="-200"
+                       To="-300"
+                       BeginTime="0:0:1"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+    </Storyboard>
+    <Storyboard x:Key="SignUpPrep"
+                Completed="SignUpPrep_Storyboard_Completed">
+      <DoubleAnimation Storyboard.TargetName="Username"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="240"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />      
+      <DoubleAnimation Storyboard.TargetName="Password"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="240"
+                       Duration="0:0:0.5"
+                       AutoReverse="False" />
+      <!--  Titel  -->
+      <DoubleAnimation Storyboard.TargetName="Titel"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="-120"
+                       Duration="0:0:0.001"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Titel"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       BeginTime="0:0:0.2"
+                       Duration="0:0:0.1"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Titel"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                       From="-50"
+                       To="0"
+                       BeginTime="0:0:0.2"
+                       Duration="0:0:0.2"
+                       AutoReverse="False" />
+      <!--  Firstname  -->
+      <DoubleAnimation Storyboard.TargetName="Firstname"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="-120"
+                       Duration="0:0:0.001"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Firstname"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       BeginTime="0:0:0.3"
+                       Duration="0:0:0.1"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Firstname"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                       From="-50"
+                       To="0"
+                       BeginTime="0:0:0.3"
+                       Duration="0:0:0.2"
+                       AutoReverse="False" />
+      <!--  Lastname  -->
+      <DoubleAnimation Storyboard.TargetName="Lastname"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="-120"
+                       Duration="0:0:0.001"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Lastname"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       BeginTime="0:0:0.4"
+                       Duration="0:0:0.1"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Lastname"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                       From="-50"
+                       To="0"
+                       BeginTime="0:0:0.4"
+                       Duration="0:0:0.2"
+                       AutoReverse="False" />
+      <!--  Email  -->
+      <DoubleAnimation Storyboard.TargetName="Email"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="0"
+                       To="-120"
+                       Duration="0:0:0.1"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Email"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       BeginTime="0:0:0.5"
+                       Duration="0:0:0.2"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Email"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                       From="-50"
+                       To="0"
+                       BeginTime="0:0:0.5"
+                       Duration="0:0:0.1"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Login"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="-300"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="SignUp"
+                       Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
+                       From="-300"
+                       To="0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />                     
+    </Storyboard>
+    <Storyboard x:Key="SignUpAnimation">
+      
+      <DoubleAnimation Storyboard.TargetName="Firstname"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Lastname"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="Email"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="ConfirmPassword"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+    <DoubleAnimation Storyboard.TargetName="Login"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+      <DoubleAnimation Storyboard.TargetName="SignUp"
+                       Storyboard.TargetProperty="Opacity"
+                       From="0"
+                       To="1.0"
+                       Duration="0:0:0"
+                       AutoReverse="False" />
+    </Storyboard>
+    
+  </UserControl.Resources>
+  <Grid>
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+      <TextBlock Text="Login"
+                 FontSize="80"
+                 HorizontalAlignment="Center" />
+      <TextBox x:Name="Username"
+               Margin="0 20 0 10"
+               Width="400"
+               Height="40"
+               Text="Username"
+               FontSize="20"
+               Padding="5">
+        <TextBox.RenderTransform>
+          <TranslateTransform />
+        </TextBox.RenderTransform>
+      </TextBox>
+      <TextBox x:Name="Password"
+               Margin="0 10 0 10"
+               Width="400"
+               Height="40"
+               Text="Password"
+               FontSize="20"
+               Padding="5">
+        <TextBox.RenderTransform>
+          <TranslateTransform />
+        </TextBox.RenderTransform>
+      </TextBox>
+      <!--  ~~~~~~~~~~~~~~~~   -->
+      <TextBox x:Name="Titel"
+               Margin="0 10 0 10"
+               Width="400"
+               Height="40"
+               Text="Titel"
+               FontSize="20"
+               Padding="5">
+        <TextBox.RenderTransform>
+          <TranslateTransform />
+        </TextBox.RenderTransform>
+      </TextBox>
+      <TextBox x:Name="Firstname"
+               Margin="0 10 0 10"
+               Width="400"
+               Height="40"
+               Text="Firstname"
+               FontSize="20"
+               Padding="5">
+        <TextBox.RenderTransform>
+          <TranslateTransform />
+        </TextBox.RenderTransform>
+      </TextBox>
+      <TextBox x:Name="Lastname"
+               Margin="0 10 0 10"
+               Width="400"
+               Height="40"
+               Text="Lastname"
+               FontSize="20"
+               Padding="5">
+        <TextBox.RenderTransform>
+          <TranslateTransform />
+        </TextBox.RenderTransform>
+      </TextBox>
+      <TextBox x:Name="Email"
+               Margin="0 10 0 10"
+               Width="400"
+               Height="40"
+               Text="Email"
+               FontSize="20"
+               Padding="5">
+        <TextBox.RenderTransform>
+          <TranslateTransform />
+        </TextBox.RenderTransform>
+      </TextBox>
+      <TextBox x:Name="ConfirmPassword"
+               Margin="0 10 0 20"
+               Width="400"
+               Height="40"
+               Text="Confirm password"
+               FontSize="20"
+               Padding="5">
+        <TextBox.RenderTransform>
+          <TranslateTransform />
+        </TextBox.RenderTransform>
+      </TextBox>
+      <StackPanel Orientation="Horizontal">
+        <Button Click="Login_Click"
+                x:Name="Login"
+                Content="Login"
+                FontSize="20"
+                Width="190"
+                Margin="0 0 10 0"
+                Height="38">
+          <Button.RenderTransform>
+            <TranslateTransform />
+          </Button.RenderTransform>
+        </Button>
+        <Button Click="SignUp_Click"
+                x:Name="SignUp"
+                Content="Sign up"
+                FontSize="20"
+                Width="190"
+                Margin="10 0 0 0"
+                Height="38">
+          <Button.RenderTransform>
+            <TranslateTransform />
+          </Button.RenderTransform>
+        </Button>
+      </StackPanel>
+    </StackPanel>
+  </Grid>
+</UserControl>
