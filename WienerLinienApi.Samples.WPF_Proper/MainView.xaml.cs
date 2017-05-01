@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,28 +17,27 @@ using System.Windows.Shapes;
 namespace WienerLinienApi.Samples.WPF_Proper
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainView : UserControl
     {
-        public MainView mV { get; set; }
-        public MainWindow()
+        public MainWindow mW { set; get; }
+        public MainView(MainWindow ThisMainWindow)
         {
-            mV = new MainView(this);
+            mW = ThisMainWindow;
             InitializeComponent();
-            Content = mV;
+        }
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            Storyboard sb = (this.FindResource("LoginAnimation") as Storyboard);
+            sb.Begin();
+
         }
 
-        public void changeToLogin() {
-            Content = null;
-            Content = new LoginView(this);
+        private void Login_Storyboard_Completed(object sender, EventArgs e)
+        {
+            mW.changeToLogin();
         }
-
-        public void changeToMain() {
-            Content = null;
-            Content = mV;
-        }
-
-        
     }
 }

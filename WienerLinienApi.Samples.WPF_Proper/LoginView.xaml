@@ -305,17 +305,17 @@
           <TranslateTransform />
         </TextBox.RenderTransform>
       </TextBox>
-      <TextBox x:Name="Password"
+      <PasswordBox x:Name="Password"
                Margin="0 10 0 10"
                Width="400"
                Height="40"
-               Text="Password"
+               Password="Password"
                FontSize="20"
                Padding="5">
-        <TextBox.RenderTransform>
+        <PasswordBox.RenderTransform>
           <TranslateTransform />
-        </TextBox.RenderTransform>
-      </TextBox>
+        </PasswordBox.RenderTransform>
+      </PasswordBox>
       <!--  ~~~~~~~~~~~~~~~~   -->
       <TextBox x:Name="Titel"
                Margin="0 10 0 10"
@@ -361,17 +361,17 @@
           <TranslateTransform />
         </TextBox.RenderTransform>
       </TextBox>
-      <TextBox x:Name="ConfirmPassword"
+      <PasswordBox x:Name="ConfirmPassword"
                Margin="0 10 0 20"
                Width="400"
                Height="40"
-               Text="Confirm password"
+               Password="Password"
                FontSize="20"
                Padding="5">
-        <TextBox.RenderTransform>
+        <PasswordBox.RenderTransform>
           <TranslateTransform />
-        </TextBox.RenderTransform>
-      </TextBox>
+        </PasswordBox.RenderTransform>
+      </PasswordBox>
       <StackPanel Orientation="Horizontal">
         <Button Click="Login_Click"
                 x:Name="Login"

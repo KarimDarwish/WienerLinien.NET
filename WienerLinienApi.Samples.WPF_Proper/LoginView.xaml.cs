@@ -23,8 +23,10 @@ namespace WienerLinienApi.Samples.WPF_Proper
     public partial class LoginView : UserControl
     {
         public bool isLogin { get; set; }
-        public LoginView()
+        public MainWindow mW { set; get; }
+        public LoginView(MainWindow ThisMainWindow)
         {
+            mW = ThisMainWindow;
             isLogin = true;
             InitializeComponent();
             Storyboard sb = (this.FindResource("LoginPrep") as Storyboard);
@@ -53,7 +55,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
             {
                
                 UserManagement usermanagement = new UserManagement();
-               if(usermanagement.Signup(Username.Text, Password.Text, Firstname.Text, Lastname.Text))
+               if(usermanagement.Signup(Username.Text, Password.Password, Firstname.Text, Lastname.Text))
                 {
                     MessageBox.Show("Signup successful");
                 }
@@ -73,7 +75,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
             else
             {
                 UserManagement usermanagement = new UserManagement();
-                if(usermanagement.Login(Username.Text, Password.Text))
+                if(usermanagement.Login(Username.Text, Password.Password))
                 {
                     MessageBox.Show("Login successful");
                 }
@@ -99,6 +101,10 @@ namespace WienerLinienApi.Samples.WPF_Proper
             }
 
             isLogin = !isLogin;
+        }
+
+        public void toMainView() {
+            mW.changeToMain();
         }
        
     }
