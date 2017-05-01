@@ -32,5 +32,11 @@ namespace WienerLinienApi.Samples.WPF.View
             BusStopFavDialog bsfd = new BusStopFavDialog();
             bsfd.Show();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            BusStopFavDialog bsfd = new BusStopFavDialog();
+            bsfd.Show();
+        }
     }
 }

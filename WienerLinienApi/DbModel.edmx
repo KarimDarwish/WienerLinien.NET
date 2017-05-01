@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ewrlinienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="Benutzer_ID" />
+          </Key>
+          <Property Name="Benutzer_ID" Type="int" Nullable="false" />
+          <Property Name="Vorname" Type="varchar" MaxLength="50" />
+          <Property Name="Nachname" Type="varchar" MaxLength="50" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="BenutzerHaltestellen">
+          <Key>
+            <PropertyRef Name="BenutzerHaltestelle_ID" />
+          </Key>
+          <Property Name="BenutzerHaltestelle_ID" Type="int" Nullable="false" />
+          <Property Name="Benutzer_ID" Type="int" Nullable="false" />
+          <Property Name="Haltestellen_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Haltestellen">
+          <Key>
+            <PropertyRef Name="Haltestellen_ID" />
+          </Key>
+          <Property Name="Haltestellen_ID" Type="int" Nullable="false" />
+          <Property Name="Typ" Type="varchar" MaxLength="50" />
+          <Property Name="Diva" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Gemeinde" Type="varchar" MaxLength="50" />
+          <Property Name="Gemeinde_ID" Type="int" />
+          <Property Name="WGS84_LAT" Type="varchar" MaxLength="50" />
+          <Property Name="WGS84_LON" Type="varchar" MaxLength="50" />
+          <Property Name="Stand" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Linien">
+          <Key>
+            <PropertyRef Name="Linien_ID" />
+          </Key>
+          <Property Name="Linien_ID" Type="int" Nullable="false" />
+          <Property Name="Bezeichnung" Type="varchar" MaxLength="50" />
+          <Property Name="Reihenfolge" Type="int" />
+          <Property Name="Echtzeit" Type="int" />
+          <Property Name="Verkehrsmittel" Type="varchar" MaxLength="50" />
+          <Property Name="Stand" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Steige">
+          <Key>
+            <PropertyRef Name="Steig_Id" />
+          </Key>
+          <Property Name="Steig_Id" Type="int" Nullable="false" />
+          <Property Name="FK_Linien_ID" Type="int" />
+          <Property Name="FK_Haltestellen_ID" Type="int" />
+          <Property Name="Richtung" Type="varchar" MaxLength="50" />
+          <Property Name="Reihenfolge" Type="varchar" MaxLength="50" />
+          <Property Name="RBL_Nummer" Type="varchar" MaxLength="50" />
+          <Property Name="Bereich" Type="varchar" MaxLength="50" />
+          <Property Name="Steig" Type="varchar" MaxLength="50" />
+          <Property Name="Steig_WGS84_LAT" Type="float" />
+          <Property Name="Steig_WGS84_LON" Type="float" />
+          <Property Name="Stand" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="Benutzer_FK">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="1" />
+          <End Role="BenutzerHaltestellen" Type="Self.BenutzerHaltestellen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="Benutzer_ID" />
+            </Principal>
+            <Dependent Role="BenutzerHaltestellen">
+              <PropertyRef Name="Benutzer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FavoritHaltestellen_FK">
+          <End Role="Haltestellen" Type="Self.Haltestellen" Multiplicity="1" />
+          <End Role="BenutzerHaltestellen" Type="Self.BenutzerHaltestellen" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Haltestellen">
+              <PropertyRef Name="Haltestellen_ID" />
+            </Principal>
+            <Dependent Role="BenutzerHaltestellen">
+              <PropertyRef Name="BenutzerHaltestelle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Haltestellen_FK">
+          <End Role="Haltestellen" Type="Self.Haltestellen" Multiplicity="0..1" />
+          <End Role="Steige" Type="Self.Steige" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Haltestellen">
+              <PropertyRef Name="Haltestellen_ID" />
+            </Principal>
+            <Dependent Role="Steige">
+              <PropertyRef Name="FK_Haltestellen_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Linien_FK">
+          <End Role="Linien" Type="Self.Linien" Multiplicity="0..1" />
+          <End Role="Steige" Type="Self.Steige" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Linien">
+              <PropertyRef Name="Linien_ID" />
+            </Principal>
+            <Dependent Role="Steige">
+              <PropertyRef Name="FK_Linien_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ewrlinienModelStoreContainer">
+          <EntitySet Name="Benutzer" EntityType="Self.Benutzer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BenutzerHaltestellen" EntityType="Self.BenutzerHaltestellen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Haltestellen" EntityType="Self.Haltestellen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Linien" EntityType="Self.Linien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Steige" EntityType="Self.Steige" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Benutzer_FK" Association="Self.Benutzer_FK">
+            <End Role="Benutzer" EntitySet="Benutzer" />
+            <End Role="BenutzerHaltestellen" EntitySet="BenutzerHaltestellen" />
+          </AssociationSet>
+          <AssociationSet Name="FavoritHaltestellen_FK" Association="Self.FavoritHaltestellen_FK">
+            <End Role="Haltestellen" EntitySet="Haltestellen" />
+            <End Role="BenutzerHaltestellen" EntitySet="BenutzerHaltestellen" />
+          </AssociationSet>
+          <AssociationSet Name="Haltestellen_FK" Association="Self.Haltestellen_FK">
+            <End Role="Haltestellen" EntitySet="Haltestellen" />
+            <End Role="Steige" EntitySet="Steige" />
+          </AssociationSet>
+          <AssociationSet Name="Linien_FK" Association="Self.Linien_FK">
+            <End Role="Linien" EntitySet="Linien" />
+            <End Role="Steige" EntitySet="Steige" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ewrlinienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="Benutzer_ID" />
+          </Key>
+          <Property Name="Benutzer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Vorname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nachname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BenutzerHaltestellens" Relationship="Self.Benutzer_FK" FromRole="Benutzer" ToRole="BenutzerHaltestellen" />
+        </EntityType>
+        <EntityType Name="BenutzerHaltestellen">
+          <Key>
+            <PropertyRef Name="BenutzerHaltestelle_ID" />
+          </Key>
+          <Property Name="BenutzerHaltestelle_ID" Type="Int32" Nullable="false" />
+          <Property Name="Benutzer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Haltestellen_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Benutzer" Relationship="Self.Benutzer_FK" FromRole="BenutzerHaltestellen" ToRole="Benutzer" />
+          <NavigationProperty Name="Haltestellen" Relationship="Self.FavoritHaltestellen_FK" FromRole="BenutzerHaltestellen" ToRole="Haltestellen" />
+        </EntityType>
+        <EntityType Name="Haltestellen">
+          <Key>
+            <PropertyRef Name="Haltestellen_ID" />
+          </Key>
+          <Property Name="Haltestellen_ID" Type="Int32" Nullable="false" />
+          <Property Name="Typ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Diva" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gemeinde" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gemeinde_ID" Type="Int32" />
+          <Property Name="WGS84_LAT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WGS84_LON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Stand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BenutzerHaltestellen" Relationship="Self.FavoritHaltestellen_FK" FromRole="Haltestellen" ToRole="BenutzerHaltestellen" />
+          <NavigationProperty Name="Steiges" Relationship="Self.Haltestellen_FK" FromRole="Haltestellen" ToRole="Steige" />
+        </EntityType>
+        <EntityType Name="Linien">
+          <Key>
+            <PropertyRef Name="Linien_ID" />
+          </Key>
+          <Property Name="Linien_ID" Type="Int32" Nullable="false" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reihenfolge" Type="Int32" />
+          <Property Name="Echtzeit" Type="Int32" />
+          <Property Name="Verkehrsmittel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Stand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Steiges" Relationship="Self.Linien_FK" FromRole="Linien" ToRole="Steige" />
+        </EntityType>
+        <EntityType Name="Steige">
+          <Key>
+            <PropertyRef Name="Steig_Id" />
+          </Key>
+          <Property Name="Steig_Id" Type="Int32" Nullable="false" />
+          <Property Name="FK_Linien_ID" Type="Int32" />
+          <Property Name="FK_Haltestellen_ID" Type="Int32" />
+          <Property Name="Richtung" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reihenfolge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RBL_Nummer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Bereich" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Steig" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Steig_WGS84_LAT" Type="Double" />
+          <Property Name="Steig_WGS84_LON" Type="Double" />
+          <Property Name="Stand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Haltestellen" Relationship="Self.Haltestellen_FK" FromRole="Steige" ToRole="Haltestellen" />
+          <NavigationProperty Name="Linien" Relationship="Self.Linien_FK" FromRole="Steige" ToRole="Linien" />
+        </EntityType>
+        <Association Name="Benutzer_FK">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="1" />
+          <End Role="BenutzerHaltestellen" Type="Self.BenutzerHaltestellen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="Benutzer_ID" />
+            </Principal>
+            <Dependent Role="BenutzerHaltestellen">
+              <PropertyRef Name="Benutzer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FavoritHaltestellen_FK">
+          <End Role="Haltestellen" Type="Self.Haltestellen" Multiplicity="1" />
+          <End Role="BenutzerHaltestellen" Type="Self.BenutzerHaltestellen" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Haltestellen">
+              <PropertyRef Name="Haltestellen_ID" />
+            </Principal>
+            <Dependent Role="BenutzerHaltestellen">
+              <PropertyRef Name="BenutzerHaltestelle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Haltestellen_FK">
+          <End Role="Haltestellen" Type="Self.Haltestellen" Multiplicity="0..1" />
+          <End Role="Steige" Type="Self.Steige" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Haltestellen">
+              <PropertyRef Name="Haltestellen_ID" />
+            </Principal>
+            <Dependent Role="Steige">
+              <PropertyRef Name="FK_Haltestellen_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Linien_FK">
+          <End Role="Linien" Type="Self.Linien" Multiplicity="0..1" />
+          <End Role="Steige" Type="Self.Steige" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Linien">
+              <PropertyRef Name="Linien_ID" />
+            </Principal>
+            <Dependent Role="Steige">
+              <PropertyRef Name="FK_Linien_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Benutzers" EntityType="Self.Benutzer" />
+          <EntitySet Name="BenutzerHaltestellens" EntityType="Self.BenutzerHaltestellen" />
+          <EntitySet Name="Haltestellens" EntityType="Self.Haltestellen" />
+          <EntitySet Name="Liniens" EntityType="Self.Linien" />
+          <EntitySet Name="Steiges" EntityType="Self.Steige" />
+          <AssociationSet Name="Benutzer_FK" Association="Self.Benutzer_FK">
+            <End Role="Benutzer" EntitySet="Benutzers" />
+            <End Role="BenutzerHaltestellen" EntitySet="BenutzerHaltestellens" />
+          </AssociationSet>
+          <AssociationSet Name="FavoritHaltestellen_FK" Association="Self.FavoritHaltestellen_FK">
+            <End Role="Haltestellen" EntitySet="Haltestellens" />
+            <End Role="BenutzerHaltestellen" EntitySet="BenutzerHaltestellens" />
+          </AssociationSet>
+          <AssociationSet Name="Haltestellen_FK" Association="Self.Haltestellen_FK">
+            <End Role="Haltestellen" EntitySet="Haltestellens" />
+            <End Role="Steige" EntitySet="Steiges" />
+          </AssociationSet>
+          <AssociationSet Name="Linien_FK" Association="Self.Linien_FK">
+            <End Role="Linien" EntitySet="Liniens" />
+            <End Role="Steige" EntitySet="Steiges" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ewrlinienModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Benutzers">
+            <EntityTypeMapping TypeName="ewrlinienModel.Benutzer">
+              <MappingFragment StoreEntitySet="Benutzer">
+                <ScalarProperty Name="Benutzer_ID" ColumnName="Benutzer_ID" />
+                <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+                <ScalarProperty Name="Nachname" ColumnName="Nachname" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BenutzerHaltestellens">
+            <EntityTypeMapping TypeName="ewrlinienModel.BenutzerHaltestellen">
+              <MappingFragment StoreEntitySet="BenutzerHaltestellen">
+                <ScalarProperty Name="BenutzerHaltestelle_ID" ColumnName="BenutzerHaltestelle_ID" />
+                <ScalarProperty Name="Benutzer_ID" ColumnName="Benutzer_ID" />
+                <ScalarProperty Name="Haltestellen_ID" ColumnName="Haltestellen_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Haltestellens">
+            <EntityTypeMapping TypeName="ewrlinienModel.Haltestellen">
+              <MappingFragment StoreEntitySet="Haltestellen">
+                <ScalarProperty Name="Haltestellen_ID" ColumnName="Haltestellen_ID" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="Diva" ColumnName="Diva" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gemeinde" ColumnName="Gemeinde" />
+                <ScalarProperty Name="Gemeinde_ID" ColumnName="Gemeinde_ID" />
+                <ScalarProperty Name="WGS84_LAT" ColumnName="WGS84_LAT" />
+                <ScalarProperty Name="WGS84_LON" ColumnName="WGS84_LON" />
+                <ScalarProperty Name="Stand" ColumnName="Stand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Liniens">
+            <EntityTypeMapping TypeName="ewrlinienModel.Linien">
+              <MappingFragment StoreEntitySet="Linien">
+                <ScalarProperty Name="Linien_ID" ColumnName="Linien_ID" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Reihenfolge" ColumnName="Reihenfolge" />
+                <ScalarProperty Name="Echtzeit" ColumnName="Echtzeit" />
+                <ScalarProperty Name="Verkehrsmittel" ColumnName="Verkehrsmittel" />
+                <ScalarProperty Name="Stand" ColumnName="Stand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Steiges">
+            <EntityTypeMapping TypeName="ewrlinienModel.Steige">
+              <MappingFragment StoreEntitySet="Steige">
+                <ScalarProperty Name="Steig_Id" ColumnName="Steig_Id" />
+                <ScalarProperty Name="FK_Linien_ID" ColumnName="FK_Linien_ID" />
+                <ScalarProperty Name="FK_Haltestellen_ID" ColumnName="FK_Haltestellen_ID" />
+                <ScalarProperty Name="Richtung" ColumnName="Richtung" />
+                <ScalarProperty Name="Reihenfolge" ColumnName="Reihenfolge" />
+                <ScalarProperty Name="RBL_Nummer" ColumnName="RBL_Nummer" />
+                <ScalarProperty Name="Bereich" ColumnName="Bereich" />
+                <ScalarProperty Name="Steig" ColumnName="Steig" />
+                <ScalarProperty Name="Steig_WGS84_LAT" ColumnName="Steig_WGS84_LAT" />
+                <ScalarProperty Name="Steig_WGS84_LON" ColumnName="Steig_WGS84_LON" />
+                <ScalarProperty Name="Stand" ColumnName="Stand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

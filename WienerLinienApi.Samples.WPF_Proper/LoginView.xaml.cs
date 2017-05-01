@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WienerLinienApi;
 
 namespace WienerLinienApi.Samples.WPF_Proper
 {
@@ -48,6 +49,19 @@ namespace WienerLinienApi.Samples.WPF_Proper
             if (isLogin) {
                 ToggleMenu();
             }
+            else
+            {
+               
+                UserManagement usermanagement = new UserManagement();
+               if(usermanagement.Signup(Username.Text, Password.Text, Firstname.Text, Lastname.Text))
+                {
+                    MessageBox.Show("Signup successful");
+                }
+               else
+                {
+                    MessageBox.Show("Signup unsuccessful");
+                }
+            }
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -56,6 +70,20 @@ namespace WienerLinienApi.Samples.WPF_Proper
             {
                 ToggleMenu();
             }
+            else
+            {
+                UserManagement usermanagement = new UserManagement();
+                if(usermanagement.Login(Username.Text, Password.Text))
+                {
+                    MessageBox.Show("Login successful");
+                }
+                else
+                {
+                    MessageBox.Show("Login unsuccessful");
+                }
+
+            }
+  
         }
 
         private void ToggleMenu() {

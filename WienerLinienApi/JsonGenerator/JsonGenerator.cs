@@ -27,11 +27,13 @@ namespace WienerLinienApi.JsonGenerator
         /// </summary>
         private const string PlatformsLink = "http://data.wien.gv.at/csv/wienerlinien-ogd-steige.csv";
 
-        private List<LinienModel> Lines { get; set; }
-        private List<SteigModel> Platforms { get; set; }
-        private List<HaltestellenModel> Haltetellen { get; set; }
+        private List<Linien> Lines { get; set; }
+        private List<Steige> Platforms { get; set; }
+        private List<Haltestellen> Haltetellen { get; set; }
 
         private HttpClient client;
+        private Entities dbEntities = new Entities();
+       
 
         #endregion
 
@@ -40,6 +42,7 @@ namespace WienerLinienApi.JsonGenerator
         public JsonGenerator()
         {
             client = new HttpClient();
+            
         }
 
 
@@ -49,21 +52,21 @@ namespace WienerLinienApi.JsonGenerator
             // DownloadFiles();
             var listPlatformsModel =
                 from platform in Platforms
-                join line in Lines on platform.FkLineId equals line.LineId
+                join line in Lines on platform.FK_Linien_ID equals line.Linien_ID
                 select new WienerLinienModel.PlatformsModel
                 {
-                    LineId = line.LineId.TryParse(0),
-                    Name = line.Description,
-                    Realtime = Convert.ToBoolean(Convert.ToInt16(line.Realtime)),
-                    MeansOfTransport = line.MeansOfTransport,
-                    RblNumber = platform.RblNumber.TryParse(0),
-                    Area = platform.Area,
-                    Direction = platform.Direction,
-                    Order = platform.Order,
-                    PlatformName = platform.PlatformId,
-                    PlatformWgs84Lat = platform.PlatformWgs84Lat.TryParse(0.0),
-                    PlatformWgs84Lon = platform.PlatformWgs84Lon.TryParse(0.0),
-                    StationId = platform.FkStationId.TryParse(0)
+                    LineId = line.Linien_ID,
+                    Name = line.Bezeichnung,
+                    Realtime = Convert.ToBoolean(Convert.ToInt16(line.Echtzeit)),
+                    MeansOfTransport = MeansOfTransportWrapper.GetMeansOfTransportFromString(line.Verkehrsmittel),
+                    RblNumber = platform.RBL_Nummer.TryParse(0),
+                    Area = platform.Bereich,
+                    Direction = platform.Richtung,
+                    Order = platform.Reihenfolge,
+                    PlatformName = platform.Steig,
+                    PlatformWgs84Lat = (double)platform.Steig_WGS84_LAT,
+                    PlatformWgs84Lon = (double)platform.Steig_WGS84_LON,
+                    StationId = (int)platform.FK_Haltestellen_ID
                 };
 
 
@@ -71,21 +74,21 @@ namespace WienerLinienApi.JsonGenerator
 
             var listModel =
             from platforms in listPlatformsModel.ToList()
-            join haltestelle in Haltetellen on platforms.StationId equals int.Parse(haltestelle.StationId)
+            join haltestelle in Haltetellen on platforms.StationId equals haltestelle.Haltestellen_ID
             group platforms by haltestelle
             into grp
             select new WienerLinienModel
             {
-                StationId = grp.Key.StationId.TryParse(0),
+                StationId = grp.Key.Haltestellen_ID,
                 // StationId = IntTryParse(grp.Key.StationId),
 
                 Typ = grp.Key.Typ,
-                Diva = grp.Key.Diva,
+                Diva = (int)grp.Key.Diva,
                 Name = grp.Key.Name,
-                Municipality = grp.Key.Municipality,
-                MunicipalityId = grp.Key.MunicipalityId.TryParse(0),
-                Wgs84Lat = grp.Key.Wgs84Lat.TryParse(0.0),
-                Wgs84Lon = grp.Key.Wgs84Lon.TryParse(0.0),
+                Municipality = grp.Key.Gemeinde,
+                MunicipalityId = (int)grp.Key.Gemeinde_ID,
+                Wgs84Lat = grp.Key.WGS84_LAT.TryParse(0.0),
+                Wgs84Lon = grp.Key.WGS84_LON.TryParse(0.0),
                 Stand = grp.Key.Stand,
                 Platforms = grp.ToList()
             };
@@ -113,62 +116,63 @@ namespace WienerLinienApi.JsonGenerator
             var linesA = DownloadAsync(LinesLink).Result;
             var platformsA = DownloadAsync(PlatformsLink).Result;
 
-            var listStations = stationsA.Remove(stationsA.LastIndexOf((Environment.NewLine), StringComparison.Ordinal))
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
-                .Skip(1)
-                .Select(columns => columns.Split(';'))
-                .Select(columns => new HaltestellenModel
-                {
-                    StationId = columns[0].Replace("\"", ""),
-                    Typ = columns[1].Replace("\"", ""),
-                    Diva = columns[2].Replace("\"", ""),
-                    Name = (columns[3]).Replace("\"", ""),
-                    Municipality = columns[4].Replace("\"", ""),
-                    MunicipalityId = columns[5].Replace("\"", ""),
-                    Wgs84Lat = columns[6].Replace("\"", ""),
-                    Wgs84Lon = columns[7].Replace("\"", ""),
-                }
-                )
-                ;
-            Haltetellen = listStations.ToList();
-            var listLines = linesA.Remove(linesA.LastIndexOf((Environment.NewLine), StringComparison.Ordinal))
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
+            //var listStations = stationsA.Remove(stationsA.LastIndexOf((Environment.NewLine), StringComparison.Ordinal))
+            //    .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
+            //    .Skip(1)
+            //    .Select(columns => columns.Split(';'))
+            //    .Select(columns => new HaltestellenModel
+            //    {
+            //        StationId = columns[0].Replace("\"", ""),
+            //        Typ = columns[1].Replace("\"", ""),
+            //        Diva = columns[2].Replace("\"", ""),
+            //        Name = (columns[3]).Replace("\"", ""),
+            //        Municipality = columns[4].Replace("\"", ""),
+            //        MunicipalityId = columns[5].Replace("\"", ""),
+            //        Wgs84Lat = columns[6].Replace("\"", ""),
+            //        Wgs84Lon = columns[7].Replace("\"", ""),
+            //    }
+            //    )
+            //    ;
+            System.Diagnostics.Debug.WriteLine(dbEntities.Haltestellens == null);
+            Haltetellen = dbEntities.Haltestellens.ToList();
+            //var listLines = linesA.Remove(linesA.LastIndexOf((Environment.NewLine), StringComparison.Ordinal))
+            //    .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
 
-                .Skip(1)
-                .Select(columns => columns.Split(';'))
-                .Select(columns => new LinienModel
-                {
-                    LineId = columns[0].Replace("\"", ""),
-                    Description = columns[1].Replace("\"", ""),
-                    Order = columns[2].Replace("\"", ""),
-                    Realtime = columns[3].Replace("\"", ""),
-                    MeansOfTransport = MeansOfTransportWrapper.GetMeansOfTransportFromString(columns[4].Replace("\"", "")),
-                    Stand = columns[5].Replace("\"", "")
-                })
-                ;
-            Lines = listLines.ToList();
-            var listPlatforms = platformsA.Remove(platformsA.LastIndexOf((Environment.NewLine), StringComparison.Ordinal))
+            //    .Skip(1)
+            //    .Select(columns => columns.Split(';'))
+            //    .Select(columns => new LinienModel
+            //    {
+            //        LineId = columns[0].Replace("\"", ""),
+            //        Description = columns[1].Replace("\"", ""),
+            //        Order = columns[2].Replace("\"", ""),
+            //        Realtime = columns[3].Replace("\"", ""),
+            //        MeansOfTransport = MeansOfTransportWrapper.GetMeansOfTransportFromString(columns[4].Replace("\"", "")),
+            //        Stand = columns[5].Replace("\"", "")
+            //    })
+            //    ;
+            Lines = dbEntities.Liniens.ToList();
+            //var listPlatforms = platformsA.Remove(platformsA.LastIndexOf((Environment.NewLine), StringComparison.Ordinal))
 
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
+            //    .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
 
-                .Skip(1)
-                .Select(columns => columns.Split(';'))
-                .Select(columns => new SteigModel
-                {
-                    PlatformId = columns[0].Replace("\"", ""),
-                    FkLineId = columns[1].Replace("\"", ""),
-                    FkStationId = columns[2].Replace("\"", ""),
-                    Direction = columns[3].Replace("\"", ""),
-                    Order = columns[4].Replace("\"", ""),
-                    RblNumber = columns[5].Replace("\"", ""),
-                    Area = columns[6].Replace("\"", ""),
-                    Platform = columns[7].Replace("\"", ""),
-                    PlatformWgs84Lat = columns[8].Replace("\"", ""),
-                    PlatformWgs84Lon = columns[9].Replace("\"", ""),
-                    Stand = columns[10].Replace("\"", "")
-                })
-                ;
-            Platforms = listPlatforms.ToList();
+            //    .Skip(1)
+            //    .Select(columns => columns.Split(';'))
+            //    .Select(columns => new SteigModel
+            //    {
+            //        PlatformId = columns[0].Replace("\"", ""),
+            //        FkLineId = columns[1].Replace("\"", ""),
+            //        FkStationId = columns[2].Replace("\"", ""),
+            //        Direction = columns[3].Replace("\"", ""),
+            //        Order = columns[4].Replace("\"", ""),
+            //        RblNumber = columns[5].Replace("\"", ""),
+            //        Area = columns[6].Replace("\"", ""),
+            //        Platform = columns[7].Replace("\"", ""),
+            //        PlatformWgs84Lat = columns[8].Replace("\"", ""),
+            //        PlatformWgs84Lon = columns[9].Replace("\"", ""),
+            //        Stand = columns[10].Replace("\"", "")
+            //    })
+            //    ;
+            Platforms = dbEntities.Steiges.ToList();
             //  System.Diagnostics.Debug.WriteLine(Platforms[0].RblNumber);
 
         }
@@ -201,8 +205,8 @@ namespace WienerLinienApi.JsonGenerator
             public string RblNumber { get; set; }
             public string Area { get; set; }
             public string Platform { get; set; }
-            public string PlatformWgs84Lat { get; set; }
-            public string PlatformWgs84Lon { get; set; }
+            public float PlatformWgs84Lat { get; set; }
+            public float PlatformWgs84Lon { get; set; }
             public string Stand { get; set; }
         }
 
@@ -212,7 +216,7 @@ namespace WienerLinienApi.JsonGenerator
             public string Description { get; set; }
             public string Order { get; set; }
             public string Realtime { get; set; }
-            public MeansOfTransport MeansOfTransport { get; set; }
+            public string MeansOfTransport { get; set; }
             public string Stand { get; set; }
 
         }
@@ -221,7 +225,7 @@ namespace WienerLinienApi.JsonGenerator
         {
             public int StationId { get; set; }
             public string Typ { get; set; }
-            public string Diva { get; set; }
+            public int Diva { get; set; }
             public string Name { get; set; }
             public string Municipality { get; set; }
             public int MunicipalityId { get; set; }

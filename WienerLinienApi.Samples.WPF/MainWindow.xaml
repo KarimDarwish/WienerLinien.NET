@@ -10,6 +10,7 @@
   Height="700"
   Width="900"
   WindowStartupLocation="CenterScreen"
-  WindowState="Maximized">
+  WindowState="Maximized"
+    Loaded="Window_Loaded">
   
 </Window>

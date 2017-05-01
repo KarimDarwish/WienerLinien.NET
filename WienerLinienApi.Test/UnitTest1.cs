@@ -47,6 +47,12 @@ namespace WienerLinienApi.Test
             var currentTrafficInfo = await rtd.GetTrafficInfoDataAsync(new Parameters.TrafficInfoParameters());
             Assert.IsFalse(currentTrafficInfo.Data.IsNull());
         }
+        [TestMethod]
+        public async Task GetJson()
+        {
+
+
+        }
         
 
         [TestMethod]
