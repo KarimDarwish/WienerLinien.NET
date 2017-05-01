@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WienerLinienApi.Samples.WPF_Proper.View;
 
 namespace WienerLinienApi.Samples.WPF_Proper
 {
@@ -27,9 +28,9 @@ namespace WienerLinienApi.Samples.WPF_Proper
             mW = ThisMainWindow;
             InitializeComponent();
         }
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-
             Storyboard sb = (this.FindResource("LoginAnimation") as Storyboard);
             sb.Begin();
 
@@ -38,6 +39,12 @@ namespace WienerLinienApi.Samples.WPF_Proper
         private void Login_Storyboard_Completed(object sender, EventArgs e)
         {
             mW.changeToLogin();
+        }
+
+        private void AddBusButton_Click(object sender, RoutedEventArgs e)
+        {
+            BusStopFavDialog dialog = new View.BusStopFavDialog();
+            dialog.ShowDialog();
         }
     }
 }

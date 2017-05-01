@@ -14,6 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WienerLinienApi.Samples.WPF_Proper.View;
 
 namespace WienerLinienApi.Samples.WPF_Proper
 {
@@ -27,7 +28,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
         {
             mV = new MainView(this);
             InitializeComponent();
-            Content = mV;
+            Content = mV;            
         }
 
         public void changeToLogin() {

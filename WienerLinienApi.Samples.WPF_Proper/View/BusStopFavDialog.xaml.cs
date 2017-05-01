@@ -26,6 +26,7 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
         public BusStopFavDialog()
         {
             InitializeComponent();
+            //DataContext = new AutocomFile();
             
         }
 

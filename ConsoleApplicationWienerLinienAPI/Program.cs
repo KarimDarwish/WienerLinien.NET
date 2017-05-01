@@ -12,7 +12,7 @@ using WienerLinienApi.Information;
 using WienerLinienApi.Model;
 using WienerLinienApi.RealtimeData;
 using WienerLinienApi.RealtimeData.Monitor;
-using WienerLinienApi.Samples.WPF.Model;
+using WienerLinienApi.Samples.WPF_Proper.Model;
 
 namespace ConsoleApplicationWienerLinienAPI
 {

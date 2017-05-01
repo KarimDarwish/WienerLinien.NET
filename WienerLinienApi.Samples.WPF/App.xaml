@@ -1,7 +1,7 @@
-﻿<Application x:Class="WienerLinienApi.Samples.WPF.App"
+﻿<Application x:Class="WienerLinienApi.Samples.WPF_Proper.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WienerLinienApi.Samples.WPF"
+             xmlns:local="clr-namespace:WienerLinienApi.Samples.WPF_Proper"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

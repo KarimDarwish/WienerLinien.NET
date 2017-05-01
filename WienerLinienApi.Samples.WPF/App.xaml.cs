@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WienerLinienApi.Samples.WPF
+namespace WienerLinienApi.Samples.WPF_Proper
 {
     /// <summary>
     /// Interaction logic for App.xaml

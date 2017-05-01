@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WienerLinienApi.Samples.WPF.Properties
+namespace WienerLinienApi.Samples.WPF_Proper.Properties
 {
 
 
