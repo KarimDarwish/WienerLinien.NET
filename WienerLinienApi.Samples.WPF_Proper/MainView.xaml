@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:WienerLinienApi.Samples.WPF_Proper"
              xmlns:localm="clr-namespace:WienerLinienApi.Samples.WPF_Proper.Model"
              mc:Ignorable="d"
-             Height="1440"
-             Width="2560">
+             d:DesignHeight="1440"
+             d:DesignWidth="2560">
   <UserControl.Resources>
     <Storyboard x:Key="LoginAnimation"
                 Completed="Login_Storyboard_Completed">
