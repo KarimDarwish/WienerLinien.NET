@@ -58,7 +58,7 @@ namespace WienerLinienApi.JsonGenerator
                     LineId = line.Linien_ID,
                     Name = line.Bezeichnung,
                     Realtime = Convert.ToBoolean(Convert.ToInt16(line.Echtzeit)),
-                    MeansOfTransport = MeansOfTransportWrapper.GetMeansOfTransportFromString(line.Verkehrsmittel),
+                    MeansOfTransport = MeansOfTransportWrapper.GetMeansOfTransportFromString(line.Verkehrsmittel.ToLower()),
                     RblNumber = platform.RBL_Nummer.TryParse(0),
                     Area = platform.Bereich,
                     Direction = platform.Richtung,

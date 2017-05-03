@@ -126,6 +126,7 @@
       ItemsSource="{Binding TestItems}"
       SelectedItem="{Binding TestText, Mode=TwoWay}"
       DropDownClosed="StopName_DropDownClosed"
+      LostFocus="StopName_LostFocus"
       BorderThickness="1">
     </controls:AutoCompleteBox>
 

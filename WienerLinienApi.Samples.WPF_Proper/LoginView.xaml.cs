@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -66,7 +67,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
             }
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
             if (!isLogin)
             {
@@ -77,15 +78,23 @@ namespace WienerLinienApi.Samples.WPF_Proper
                 UserManagement usermanagement = new UserManagement();
                 if(usermanagement.Login(Username.Text, Password.Password))
                 {
-                    MessageBox.Show("Login successful");
+                    Background = new SolidColorBrush(Colors.LightGreen);
+                    mW.changeToMain();
                 }
                 else
                 {
-                    MessageBox.Show("Login unsuccessful");
+                    Background = new SolidColorBrush(Colors.Red);
+                    await PutTaskDelay();
+                    Background = null;
                 }
 
             }
   
+        }
+
+        async Task PutTaskDelay()
+        {
+            await Task.Delay(300);
         }
 
         private void ToggleMenu() {
@@ -114,6 +123,18 @@ namespace WienerLinienApi.Samples.WPF_Proper
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             mW.changeToMain();
+        }
+
+        private void Password_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PasswordBox pwb = (PasswordBox)sender;
+            pwb.Password = "";
+        }
+
+        private void Textbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PasswordBox pwb = (PasswordBox)sender;
+            pwb.Password = "";
         }
     }
 }

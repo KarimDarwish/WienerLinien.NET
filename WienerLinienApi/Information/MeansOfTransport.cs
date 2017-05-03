@@ -2,7 +2,7 @@
 {
     public class MeansOfTransportWrapper
     {
-        public const string Metro = "ptmetro";
+        public const string Metro = @"\"\"ptmetro\""";
         public const string Tram = "pttram";
         public const string TramWlb = "pttramwlb";
         public const string Bus = "ptbuscity";

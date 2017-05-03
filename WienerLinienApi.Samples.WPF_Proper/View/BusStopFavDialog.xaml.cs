@@ -72,5 +72,14 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
                 //BSV = new BusStopView(StopName.Text, LineName.Text, );
             }
         }
+
+        private async void StopName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(StopName.Text))
+            {
+                var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text, "");
+                LineName.ItemsSource = lineItems;
+            }
+        }
     }
 }
