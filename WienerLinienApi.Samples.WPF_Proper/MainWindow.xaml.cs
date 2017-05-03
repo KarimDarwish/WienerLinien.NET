@@ -23,12 +23,10 @@ namespace WienerLinienApi.Samples.WPF_Proper
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainView mV { get; set; }
         public MainWindow()
-        {
-            mV = new MainView(this);
+        {            
             InitializeComponent();
-            Content = mV;            
+            Content = new LoginView(this);
         }
 
         public void changeToLogin() {

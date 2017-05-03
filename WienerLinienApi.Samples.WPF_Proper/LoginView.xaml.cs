@@ -91,11 +91,15 @@ namespace WienerLinienApi.Samples.WPF_Proper
         private void ToggleMenu() {
             if (isLogin)
             {
+                TextBlock tb = (this.FindName("TextBlock") as TextBlock);
+                tb.Text = "Sign Up";
                 Storyboard sb = (this.FindResource("SignUpPrep") as Storyboard);
                 sb.Begin();
 
             }
             else {
+                TextBlock tb = (this.FindName("TextBlock") as TextBlock);
+                tb.Text = "Login";
                 Storyboard sb = (this.FindResource("LoginPrep") as Storyboard);
                 sb.Begin();
             }
