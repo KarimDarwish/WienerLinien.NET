@@ -13,6 +13,8 @@ namespace WienerLinienApi
         public bool Login(string username, string password)
         {
             Benutzer b = dbEntities.Benutzers.Where(i => i.Username == username).Single();
+            dbEntities.Haltestellens.ToList()[0].Name.Replace("\"", "");
+            dbEntities.SaveChanges(); 
             if(b.Password == sha256(password))
             {
                 return true;

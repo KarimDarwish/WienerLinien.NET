@@ -40,8 +40,12 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
             {
                 stations = await Stations.GetAllStationsAsync();
             }
+           foreach(var item in stations)
+            {
+                Console.WriteLine(item.Name);
+            }
             var lines = (from v in stations
-                         where v.Name == station
+                         where v.Name.Contains(station)
                          from p in v.Platforms
                          where p.MeansOfTransport == MeansOfTransport.Bus
                          group p by p.Name
