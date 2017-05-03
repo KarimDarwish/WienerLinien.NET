@@ -112,9 +112,6 @@ namespace WienerLinienApi.JsonGenerator
 
         private void DownloadFiles()
         {
-            var stationsA = DownloadAsync(StationsLink).Result;
-            var linesA = DownloadAsync(LinesLink).Result;
-            var platformsA = DownloadAsync(PlatformsLink).Result;
 
             //var listStations = stationsA.Remove(stationsA.LastIndexOf((Environment.NewLine), StringComparison.Ordinal))
             //    .Split(new[] { Environment.NewLine }, StringSplitOptions.None)
