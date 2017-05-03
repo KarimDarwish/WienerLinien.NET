@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,13 +19,23 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class BusStopView : UserControl
+    public partial class BusStopView : UserControl, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private string _stopName;
+        public string StopName {
+            get { return _stopName; }
+            private set
+            {
+                _stopName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StopName"));
+            }
+        }
         public BusStopView(string stop, string line, string newxtBus)
         {
             InitializeComponent();
 
-            BusStopNameLabel.Text = stop;
+            StopName = stop;
             LineName.Text = line;
             NextBus.Text = newxtBus;
         }

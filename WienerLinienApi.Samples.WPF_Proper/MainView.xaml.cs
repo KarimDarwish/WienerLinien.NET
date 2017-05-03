@@ -27,6 +27,10 @@ namespace WienerLinienApi.Samples.WPF_Proper
         {
             mW = ThisMainWindow;
             InitializeComponent();
+            Grid MainGrid = (FindName("MainGrid") as Grid);
+            UserControl test = new BusStopView("Derp", "12A", "7");
+            MainGrid.Children.Add(test);
+           
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)

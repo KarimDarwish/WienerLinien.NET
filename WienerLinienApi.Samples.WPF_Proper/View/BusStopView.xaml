@@ -425,6 +425,7 @@
           <TextBox
             x:Name="LineName"
             FontSize="30"
+            Text=""
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Background="{x:Null}"
@@ -441,6 +442,7 @@
     <TextBox
       Grid.Row="0"
       x:Name="BusStopNameLabel"
+      Text="{Binding StopName}"
       FontSize="15"
       HorizontalAlignment="Center"
       VerticalAlignment="Bottom"
