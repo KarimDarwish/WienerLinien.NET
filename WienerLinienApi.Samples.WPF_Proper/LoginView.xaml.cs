@@ -22,6 +22,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
     /// </summary>
     public partial class LoginView : UserControl
     {
+        UserManagement usermanagement = new UserManagement();
         public bool isLogin { get; set; }
         public MainWindow mW { set; get; }
         public LoginView(MainWindow ThisMainWindow)
@@ -31,7 +32,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
             InitializeComponent();
             Storyboard sb = (this.FindResource("LoginPrep") as Storyboard);
             sb.Begin();
-            
+
         }
 
         private void LoginPrep_Storyboard_Completed(object sender, EventArgs e)
@@ -45,24 +46,31 @@ namespace WienerLinienApi.Samples.WPF_Proper
             Storyboard sb = (this.FindResource("SignUpAnimation") as Storyboard);
             sb.Begin();
         }
-        
+
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            if (isLogin) {
+            if (isLogin)
+            {
                 ToggleMenu();
             }
             else
             {
+
                
-                UserManagement usermanagement = new UserManagement();
-               if(usermanagement.Signup(Username.Text, Password.Password, Firstname.Text, Lastname.Text))
+                if (!(Password.Password == ConfirmPassword.Password))
+                {
+                    MessageBox.Show("Passwords dont match");
+                    return;
+                }
+                if (usermanagement.Signup(Username.Text, Password.Password, Firstname.Text, Lastname.Text))
                 {
                     MessageBox.Show("Signup successful");
                 }
-               else
+                else
                 {
                     MessageBox.Show("Signup unsuccessful");
                 }
+
             }
         }
 
@@ -74,8 +82,8 @@ namespace WienerLinienApi.Samples.WPF_Proper
             }
             else
             {
-                UserManagement usermanagement = new UserManagement();
-                if(usermanagement.Login(Username.Text, Password.Password))
+               
+                if (usermanagement.Login(Username.Text, Password.Password))
                 {
                     MessageBox.Show("Login successful");
                 }
@@ -85,17 +93,19 @@ namespace WienerLinienApi.Samples.WPF_Proper
                 }
 
             }
-  
+
         }
 
-        private void ToggleMenu() {
+        private void ToggleMenu()
+        {
             if (isLogin)
             {
                 Storyboard sb = (this.FindResource("SignUpPrep") as Storyboard);
                 sb.Begin();
 
             }
-            else {
+            else
+            {
                 Storyboard sb = (this.FindResource("LoginPrep") as Storyboard);
                 sb.Begin();
             }
@@ -103,13 +113,22 @@ namespace WienerLinienApi.Samples.WPF_Proper
             isLogin = !isLogin;
         }
 
-        public void toMainView() {
+        public void toMainView()
+        {
             mW.changeToMain();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             mW.changeToMain();
+        }
+
+        private void Username_LostFocus(object sender, RoutedEventArgs e)
+        {
+           if(!(usermanagement.UsernameAvailable(Username.Text)))
+            {
+                MessageBox.Show("Username not available;");
+            }
         }
     }
 }

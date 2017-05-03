@@ -31,6 +31,11 @@ namespace WienerLinienApi
             dbEntities.SaveChanges();
             return true;
         }
+        public bool UsernameAvailable(string username)
+        {
+            return !(dbEntities.Benutzers.Any(i => i.Username == username));
+          
+        }
         public void AddStationToUser(Benutzer benutzerToAdd, Haltestellen haltestelleToMarkAsFavourite)
         {
             BenutzerHaltestellen bh = new BenutzerHaltestellen() { Benutzer_ID = benutzerToAdd.Benutzer_ID, Haltestellen_ID = haltestelleToMarkAsFavourite.Haltestellen_ID };

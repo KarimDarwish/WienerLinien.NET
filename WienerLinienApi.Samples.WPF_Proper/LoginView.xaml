@@ -297,6 +297,7 @@
       <TextBox x:Name="Username"
                Margin="0 20 0 10"
                Width="400"
+               LostFocus="Username_LostFocus"
                Height="40"
                Text="Username"
                FontSize="20"
