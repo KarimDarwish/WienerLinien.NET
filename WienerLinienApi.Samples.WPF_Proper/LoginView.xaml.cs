@@ -55,7 +55,11 @@ namespace WienerLinienApi.Samples.WPF_Proper
             }
             else
             {
-
+                if(Titel.Text == "" || Firstname.Text == "" || Lastname.Text=="" || Username.Text=="" || Email.Text == "" || Password.Password=="" || ConfirmPassword.Password == "")
+                {
+                    MessageBox.Show("One or more fields not filled out");
+                    return;
+                }
                
                 if (!(Password.Password == ConfirmPassword.Password))
                 {
@@ -128,6 +132,14 @@ namespace WienerLinienApi.Samples.WPF_Proper
            if(!(usermanagement.UsernameAvailable(Username.Text)))
             {
                 MessageBox.Show("Username not available;");
+            }
+        }
+
+        private void ConfirmPassword_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!(Password.Password == ConfirmPassword.Password))
+            {
+                MessageBox.Show("Passwords dont match"); 
             }
         }
     }

@@ -368,6 +368,7 @@
                Height="40"
                Password="Password"
                FontSize="20"
+                   LostFocus="ConfirmPassword_LostFocus"
                Padding="5">
         <PasswordBox.RenderTransform>
           <TranslateTransform />
