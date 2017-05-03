@@ -396,6 +396,13 @@
           </Button.RenderTransform>
         </Button>
       </StackPanel>
+      <Button x:Name="Back"
+              Content="Back"
+              Click="Back_Click"
+              FontSize="20"
+              Width="190"
+              Margin="0 10 10 0"
+              Height="38" />
     </StackPanel>
   </Grid>
 </UserControl>

@@ -30,7 +30,6 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
             var mot = MeansOfTransportWrapper.GetMeansOfTransportFromString(type);
             var listOfStations = (from v in stations
                                   from p in v.Platforms
-                                  where p.MeansOfTransport == mot
                                   select v.Name).Distinct().ToList();
             return listOfStations;
         }

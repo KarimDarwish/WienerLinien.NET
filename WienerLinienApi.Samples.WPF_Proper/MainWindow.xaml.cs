@@ -37,8 +37,8 @@ namespace WienerLinienApi.Samples.WPF_Proper
         }
 
         public void changeToMain() {
-            Content = null;
-            Content = mV;
+            Content = null; 
+            Content = new MainView(this);
         }
 
         

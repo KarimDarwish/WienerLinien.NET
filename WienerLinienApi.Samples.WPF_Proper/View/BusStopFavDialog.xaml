@@ -11,9 +11,6 @@
         Height="400"
         Width="500"
         ResizeMode="NoResize">
-  <Window.DataContext>
-    <local:AutocomFile />
-  </Window.DataContext>
   <Window.Resources>
     <Style
       x:Key="TextLabelStyle"

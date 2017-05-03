@@ -106,6 +106,10 @@ namespace WienerLinienApi.Samples.WPF_Proper
         public void toMainView() {
             mW.changeToMain();
         }
-       
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            mW.changeToMain();
+        }
     }
 }
