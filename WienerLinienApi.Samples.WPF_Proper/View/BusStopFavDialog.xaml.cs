@@ -73,12 +73,17 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
             }
         }
 
-        private async void StopName_LostFocus(object sender, RoutedEventArgs e)
+        private async void StopName_LostFocus(object sender, KeyEventArgs e)
         {
-            if (!string.IsNullOrEmpty(StopName.Text))
+            Console.WriteLine(e.Key.ToString());
+            if (e.Key == Key.E)
             {
-                var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text, "");
-                LineName.ItemsSource = lineItems;
+                if (!string.IsNullOrEmpty(StopName.Text))
+                {
+                    var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text, "");
+                    LineName.ItemsSource = lineItems;
+                    Console.WriteLine("dun");
+                }
             }
         }
     }

@@ -48,7 +48,7 @@
   </UserControl.Resources>
   <Grid x:Name="MainGrid">
     <Grid.Background>
-      <ImageBrush ImageSource="C:\Users\johan\Source\Repos\WienerLinien.NET\WienerLinienApi.Samples.WPF_Proper\Resourches\Background.jpg"
+      <ImageBrush ImageSource="C:\Users\Karim\Source\Repos\WienerLinien.NET\WienerLinienApi.Samples.WPF_Proper\Resourches\Background.jpg"
                   Opacity="0.5"
                   Stretch="UniformToFill" />
     </Grid.Background>
