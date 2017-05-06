@@ -41,8 +41,8 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
         public BusStopFavDialog()
         {
             InitializeComponent();
-            //DataContext = new AutocomFile();
             Task.Run(async () => { TestItems = await NewFavoriteStop.GetStaionNames("ptBusCity"); }).Wait();
+            StopName.ItemsSource = TestItems;           
 
         }
 
@@ -73,6 +73,8 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
             }
         }
 
+
+        //TODO: fix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         private async void StopName_LostFocus(object sender, KeyEventArgs e)
         {
             Console.WriteLine(e.Key.ToString());
