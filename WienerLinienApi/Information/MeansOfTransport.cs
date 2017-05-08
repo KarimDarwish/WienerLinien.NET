@@ -2,7 +2,7 @@
 {
     public class MeansOfTransportWrapper
     {
-        public const string Metro = "ptmetro";
+        public const string Metro = @"ptmetro";
         public const string Tram = "pttram";
         public const string TramWlb = "pttramwlb";
         public const string Bus = "ptbuscity";
@@ -11,37 +11,31 @@
         public static MeansOfTransport GetMeansOfTransportFromString(string input)
         {
             var returnMot = MeansOfTransport.Unknown;
-            var inputL = input.ToLowerInvariant();
-            if (inputL.Contains(Metro))
+            switch (input.ToLowerInvariant())
             {
-                returnMot = MeansOfTransport.Metro;
+               
+                case Metro:
+                    returnMot = MeansOfTransport.Metro;
+                    break;
+                case Tram:
+                    returnMot = MeansOfTransport.Tram;
+                    break;
+                case TramWlb:
+                    returnMot = MeansOfTransport.TramWlb;
+                    break;
+                case Bus:
+                    returnMot = MeansOfTransport.Bus;
+                    break;
+                case TrainS:
+                    returnMot = MeansOfTransport.SBahn;
+                    break;
+                case NightBus:
+                    returnMot = MeansOfTransport.NightBus;
+                    break;
+                case "other":
+                    returnMot = MeansOfTransport.Other;
+                    break;
             }
-            else if (inputL.Contains(Tram))
-            {
-                returnMot = MeansOfTransport.Tram;
-            }
-            else if (inputL.Contains(TramWlb))
-            {
-                returnMot = MeansOfTransport.TramWlb;
-            }
-            else if (inputL.Contains(Bus))
-            {
-                returnMot = MeansOfTransport.Bus;
-            }
-            else if (inputL.Contains(NightBus))
-            {
-                returnMot = MeansOfTransport.NightBus;
-            }
-            else if (inputL.Contains(TrainS))
-            {
-                returnMot = MeansOfTransport.SBahn;
-            }
-            else
-            {
-                returnMot = MeansOfTransport.Unknown;
-            }
-
-           
 
             return returnMot;
         }

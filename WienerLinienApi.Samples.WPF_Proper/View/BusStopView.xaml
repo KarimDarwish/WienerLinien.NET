@@ -425,6 +425,7 @@
           <TextBox
             x:Name="LineName"
             FontSize="30"
+            Text=""
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
             Background="{x:Null}"

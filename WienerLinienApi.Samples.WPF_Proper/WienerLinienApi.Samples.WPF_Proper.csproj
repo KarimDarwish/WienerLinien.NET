@@ -81,7 +81,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\NewFavoriteStop.cs" />
-    <Compile Include="View\AutocomFile.cs" />
     <Compile Include="View\BusStopFavDialog.xaml.cs">
       <DependentUpon>BusStopFavDialog.xaml</DependentUpon>
     </Compile>

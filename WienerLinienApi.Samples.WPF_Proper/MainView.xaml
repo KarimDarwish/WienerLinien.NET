@@ -48,7 +48,7 @@
   </UserControl.Resources>
   <Grid x:Name="MainGrid">
     <Grid.Background>
-      <ImageBrush ImageSource="C:\Users\Karim\Source\Repos\WienerLinien.NET\WienerLinienApi.Samples.WPF_Proper\Resourches\Background.jpg"
+      <ImageBrush ImageSource="C:\Users\johan\Source\Repos\WienerLinien.NET\WienerLinienApi.Samples.WPF_Proper\Resourches\Background.jpg"
                   Opacity="0.5"
                   Stretch="UniformToFill" />
     </Grid.Background>
@@ -58,6 +58,11 @@
       <ColumnDefinition Width="1*" />
       <ColumnDefinition Width="1*" />
     </Grid.ColumnDefinitions>
+    <Grid Grid.Column="0">
+      
+      
+    </Grid>
+    
     <Button x:Name="LoginButton"
             Grid.Column="4"
             Grid.Row="2"
