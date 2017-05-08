@@ -24,26 +24,27 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
         private static List<Station> stations;
         private static MonitorData Data { get; set; }
 
-        public static async Task<List<string>> GetStaionNames(string type)
+        public static async Task<List<string>> GetStaionNames(MeansOfTransport type)
         {
             stations = await Stations.GetAllStationsAsync();
-            var mot = MeansOfTransportWrapper.GetMeansOfTransportFromString(type);
+            var mot = type;
             var listOfStations = (from v in stations
                                   from p in v.Platforms
+                                  where p.MeansOfTransport == type
                                   select v.Name).Distinct().ToList();
             return listOfStations;
         }
 
-        public static async Task<List<string>> GetLinesFromStation(string station, string type)
+        public static async Task<List<string>> GetLinesFromStation(string station, MeansOfTransport type)
         {
             if (stations == null)
             {
                 stations = await Stations.GetAllStationsAsync();
             }           
             var lines = (from v in stations
-                         where v.Name.Contains(station)
+                         where v.Name.Equals(station)
                          from p in v.Platforms
-                         where p.MeansOfTransport == MeansOfTransport.Bus
+                         where p.MeansOfTransport == type
                          group p by p.Name
                          into linesList
                          select linesList.Key).ToList();

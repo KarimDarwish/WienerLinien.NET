@@ -12,6 +12,7 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
         private DateTime _now;
+        private String _timeString;
 
         public NotifyingDateTime()
         {
@@ -32,9 +33,21 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
             }
         }
 
+        public string TimeString
+        {
+            get { return _timeString; }
+            private set
+            {
+                _timeString = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TimeString"));
+            }
+        }
+
         void timer_Tick(object sender, EventArgs e)
         {
-            Now = DateTime.Now; 
+            var time = DateTime.Now;
+            Now = time;
+            TimeString = String.Concat(time.Hour, ":", time.Minute, ":", time.Second);
         }
 
     }

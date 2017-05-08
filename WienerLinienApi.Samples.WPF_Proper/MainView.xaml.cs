@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WienerLinienApi.Information;
 using WienerLinienApi.Samples.WPF_Proper.View;
 
 namespace WienerLinienApi.Samples.WPF_Proper
@@ -27,9 +28,9 @@ namespace WienerLinienApi.Samples.WPF_Proper
         {
             mW = ThisMainWindow;
             InitializeComponent();
-            UserControl test = new BusStopView("Pilgramgasse", "12A", "Eichenstraße");
-            Grid BusStopGrid1 = (FindName("BusStop1") as Grid);
-            BusStopGrid1.Children.Add(test);
+            //UserControl test = new BusStopView("Pilgramgasse", "12A", "Eichenstraße");
+            //Grid BusStopGrid1 = (FindName("BusStop1") as Grid);
+            //BusStopGrid1.Children.Add(test);
            
         }
 
@@ -47,7 +48,25 @@ namespace WienerLinienApi.Samples.WPF_Proper
 
         private void AddBusButton_Click(object sender, RoutedEventArgs e)
         {
-            BusStopFavDialog dialog = new View.BusStopFavDialog();
+            FavStopDialog dialog = new FavStopDialog(MeansOfTransport.Bus);
+            dialog.ShowDialog();
+        }
+
+        private void AddTrainButton_Click(object sender, RoutedEventArgs e)
+        {
+            FavStopDialog dialog = new FavStopDialog(MeansOfTransport.SBahn);
+            dialog.ShowDialog();
+        }
+
+        private void AddTubeButton_Click(object sender, RoutedEventArgs e)
+        {
+            FavStopDialog dialog = new FavStopDialog(MeansOfTransport.Metro);
+            dialog.ShowDialog();
+        }
+
+        private void AddTramButton_Click(object sender, RoutedEventArgs e)
+        {
+            FavStopDialog dialog = new FavStopDialog(MeansOfTransport.Tram);
             dialog.ShowDialog();
         }
     }

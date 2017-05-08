@@ -58,16 +58,13 @@
       <ColumnDefinition Width="1*" />
       <ColumnDefinition Width="1*" />
     </Grid.ColumnDefinitions>
-    <Grid Grid.Column="0"
-         >
+    <Grid Grid.Column="0">
       <Grid.RowDefinitions>
         <RowDefinition Height="1.5*" />
         <RowDefinition Height="1*" />
       </Grid.RowDefinitions>
       <Grid Grid.Row="1"
-        x:Name="BusStop1">
-        
-      </Grid>
+            x:Name="BusStop1"></Grid>
     </Grid>
     <Button x:Name="LoginButton"
             Grid.Column="4"
@@ -166,6 +163,7 @@
       </Viewbox>
     </Button>
     <Button x:Name="AddTramButton"
+            Click="AddTramButton_Click"
             Grid.Column="4"
             Grid.Row="2"
             Width="71"
@@ -228,6 +226,7 @@
       </Viewbox>
     </Button>
     <Button x:Name="AddTubeButton"
+            Click="AddTubeButton_Click"
             Grid.Column="4"
             Grid.Row="2"
             Width="71"
@@ -290,6 +289,7 @@
       </Viewbox>
     </Button>
     <Button x:Name="AddTrainButton"
+            Click="AddTrainButton_Click"
             Grid.Column="4"
             Grid.Row="2"
             Width="71"
@@ -545,8 +545,8 @@
             Background="Black" />
       <Grid Grid.Row="1">
         <Grid.RowDefinitions>
-          <RowDefinition Height="393*" />
-          <RowDefinition Height="313*" />
+          <RowDefinition Height="4*" />
+          <RowDefinition Height="3.5*" />
         </Grid.RowDefinitions>
         <Viewbox VerticalAlignment="Top"
                  HorizontalAlignment="Center"
@@ -613,7 +613,27 @@
                      Panel.ZIndex="0"
                      Margin="150 0 0 0" />
         </Grid>
-        <Rectangle Grid.Row="1"></Rectangle>
+        <Rectangle Grid.Row="1"
+                   Stroke="Black"
+                   StrokeThickness="10"
+                   Width="400"
+                   Height="100"
+                   VerticalAlignment="Top"
+                   Panel.ZIndex="-2" />
+        <TextBlock Grid.Row="1"
+                   DataContext="NotifyingDateTime"
+                   Width="400"
+                   Height="100"
+                   VerticalAlignment="Top"
+                   Panel.ZIndex="-2"
+                   FontSize="70"
+                   TextAlignment="Center"
+                   Background="#CC080000"
+                   Foreground="White">
+          <TextBlock.Text>
+            <Binding  Source="{StaticResource notifyingDate}"
+                      Path="TimeString"></Binding>
+          </TextBlock.Text></TextBlock>
       </Grid>
     </Grid>
   </Grid>

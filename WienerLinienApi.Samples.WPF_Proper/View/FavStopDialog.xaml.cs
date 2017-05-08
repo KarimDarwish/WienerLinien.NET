@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WienerLinienApi.Information;
 using WienerLinienApi.Samples.WPF_Proper.Model;
 
 namespace WienerLinienApi.Samples.WPF_Proper.View
@@ -19,8 +20,9 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
     /// <summary>
     /// Interaction logic for BusStopFavDialog.xaml
     /// </summary>
-    public partial class BusStopFavDialog : Window, INotifyPropertyChanged
+    public partial class FavStopDialog : Window, INotifyPropertyChanged
     {
+        private MeansOfTransport meameanOfTransport;
         public event PropertyChangedEventHandler PropertyChanged;
         public string SelectedLine { get; set; }
         public BusStopView BSV { get; set; }
@@ -38,10 +40,11 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
         }
 
         public List<string> LineNameColl { get; set; }
-        public BusStopFavDialog()
+        public FavStopDialog(MeansOfTransport meanOfTrans)
         {
+            meameanOfTransport = meanOfTrans;
             InitializeComponent();
-            Task.Run(async () => { TestItems = await NewFavoriteStop.GetStaionNames("ptBusCity"); }).Wait();
+            Task.Run(async () => { TestItems = await NewFavoriteStop.GetStaionNames(meameanOfTransport); }).Wait();
             StopName.ItemsSource = TestItems;           
 
         }
@@ -50,7 +53,7 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
         {
             if (!string.IsNullOrEmpty(StopName.Text))
             {
-                var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text, "");
+                var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text, meameanOfTransport);
                 LineName.ItemsSource = lineItems;
             }
         }
