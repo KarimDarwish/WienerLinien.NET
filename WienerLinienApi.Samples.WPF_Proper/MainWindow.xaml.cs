@@ -26,7 +26,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
         public MainWindow()
         {            
             InitializeComponent();
-            Content = new LoginView(this);
+            Content = new MainView(this);
         }
 
         public void changeToLogin() {

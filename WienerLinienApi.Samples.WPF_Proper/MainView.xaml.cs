@@ -27,9 +27,9 @@ namespace WienerLinienApi.Samples.WPF_Proper
         {
             mW = ThisMainWindow;
             InitializeComponent();
-            Grid MainGrid = (FindName("MainGrid") as Grid);
-            UserControl test = new BusStopView("Derp", "12A", "7");
-            MainGrid.Children.Add(test);
+            UserControl test = new BusStopView("Pilgramgasse", "12A", "Eichenstraße");
+            Grid BusStopGrid1 = (FindName("BusStop1") as Grid);
+            BusStopGrid1.Children.Add(test);
            
         }
 

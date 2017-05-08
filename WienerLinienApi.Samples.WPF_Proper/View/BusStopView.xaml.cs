@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using WienerLinienApi.Samples.WPF_Proper.Model;
 
 namespace WienerLinienApi.Samples.WPF_Proper.View
 {
@@ -21,23 +23,51 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
     /// </summary>
     public partial class BusStopView : UserControl, INotifyPropertyChanged
     {
+
+        public string Stop { get; set; }
+        public string Line { get; set; }
+        public string Direction { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
-        private string _stopName;
-        public string StopName {
-            get { return _stopName; }
+        private string _time;
+
+        public string Time
+        {
+            get { return _time; }
             private set
             {
-                _stopName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StopName"));
+                _time = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Now"));
             }
         }
-        public BusStopView(string stop, string line, string newxtBus)
+
+        public BusStopView(string stop, string line, string direction)
         {
             InitializeComponent();
+            this.Stop = stop;
+            BusStopNameLabel.Text = Stop;
 
-            BusStopNameLabel.Text = stop;
+            Line = line;
             LineName.Text = line;
-            NextBus.Text = newxtBus;
+
+
+            Direction = direction;
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(1000);
+            timer.Tick += timer_Tick;
+            timer.Start();
+
+           
+        }
+
+        private string getTime(string stop, string line, string direction) {
+            return NewFavoriteStop.GetTimeForNextBus(stop, line, direction);
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            Time = getTime(Stop, Line, Direction);
         }
     }
 }

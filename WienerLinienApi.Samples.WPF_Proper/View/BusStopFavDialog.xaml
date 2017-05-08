@@ -69,7 +69,7 @@
         Value="Black" />
       <Setter
         Property="Margin"
-        Value="10 5 120 5" />
+        Value="10 5 20 5" />
       <Setter
         Property="FontSize"
         Value="19" />
@@ -124,8 +124,8 @@
       Grid.Column="1"
       Style="{StaticResource TextBoxStyle}"     
       SelectedItem="{Binding TestText, Mode=TwoWay}"
+      GotFocus="StopName_GotFocus"
       DropDownClosed="StopName_DropDownClosed"
-      KeyDown="StopName_LostFocus"
       BorderThickness="1">
     </controls:AutoCompleteBox>
 

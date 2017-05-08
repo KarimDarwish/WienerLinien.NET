@@ -58,11 +58,17 @@
       <ColumnDefinition Width="1*" />
       <ColumnDefinition Width="1*" />
     </Grid.ColumnDefinitions>
-    <Grid Grid.Column="0">
-      
-      
+    <Grid Grid.Column="0"
+         >
+      <Grid.RowDefinitions>
+        <RowDefinition Height="1.5*" />
+        <RowDefinition Height="1*" />
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="1"
+        x:Name="BusStop1">
+        
+      </Grid>
     </Grid>
-    
     <Button x:Name="LoginButton"
             Grid.Column="4"
             Grid.Row="2"

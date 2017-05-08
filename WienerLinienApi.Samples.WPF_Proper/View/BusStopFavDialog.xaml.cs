@@ -68,25 +68,15 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
         {
             if (!string.IsNullOrEmpty(StopName.Text) && !string.IsNullOrEmpty(LineName.Text))
             {
-                var x = NewFavoriteStop.GetTimeForNextBus(StopName.Text, LineName.Text, Direction.Text);
-                //BSV = new BusStopView(StopName.Text, LineName.Text, );
+               BSV = new BusStopView(StopName.Text, LineName.Text, Direction.Text);
+
             }
         }
 
-
-        //TODO: fix !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        private async void StopName_LostFocus(object sender, KeyEventArgs e)
+        private void StopName_GotFocus(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(e.Key.ToString());
-            if (e.Key == Key.E)
-            {
-                if (!string.IsNullOrEmpty(StopName.Text))
-                {
-                    var lineItems = await NewFavoriteStop.GetLinesFromStation(StopName.Text, "");
-                    LineName.ItemsSource = lineItems;
-                    Console.WriteLine("dun");
-                }
-            }
+            LineName.ItemsSource = null;
+            Direction.ItemsSource = null;
         }
     }
 }

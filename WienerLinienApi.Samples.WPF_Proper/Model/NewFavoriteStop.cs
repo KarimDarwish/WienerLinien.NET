@@ -39,20 +39,21 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
             if (stations == null)
             {
                 stations = await Stations.GetAllStationsAsync();
-            }
-           foreach(var item in stations)
-            {
-                Console.WriteLine(item.Name);
-            }
+            }           
             var lines = (from v in stations
                          where v.Name.Contains(station)
                          from p in v.Platforms
                          where p.MeansOfTransport == MeansOfTransport.Bus
                          group p by p.Name
-                into linesList
+                         into linesList
                          select linesList.Key).ToList();
             return lines;
 
+        }
+
+        internal static string GetTimeForNextBus(object text1, string text2, object text3)
+        {
+            throw new NotImplementedException();
         }
 
         public static async Task<Dictionary<string, string>> GetDirections(string station, string line)
@@ -97,7 +98,6 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
 
         public static string GetTimeForNextBus(string station, string line, string direction)
         {
-            Console.WriteLine("-----------------");
             var time = Data.Data.Monitors.Where(i => i.Lines[0].Direction == direction && i.Lines[0].Name == line).ToList();
             Console.WriteLine(time.Count);
             foreach (var v in time)
