@@ -76,7 +76,8 @@ namespace WienerLinienApi.Samples.WPF_Proper
             else
             {
                 UserManagement usermanagement = new UserManagement();
-                if(usermanagement.Login(Username.Text, Password.Password))
+                var b = usermanagement.Login(Username.Text, Password.Password);
+                if (b != null)
                 {
                     Background = new SolidColorBrush(Colors.LightGreen);
                     mW.changeToMain();
