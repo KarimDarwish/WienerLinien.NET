@@ -35,7 +35,7 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
         {
             InitializeComponent();
 
-            StopName = stop;
+            BusStopNameLabel.Text = stop;
             LineName.Text = line;
             NextBus.Text = newxtBus;
         }
