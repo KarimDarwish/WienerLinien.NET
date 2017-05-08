@@ -10,16 +10,16 @@ namespace WienerLinienApi
     {
         Entities dbEntities = new Entities();
 
-        public bool Login(string username, string password)
+        public Benutzer Login(string username, string password)
         {
             Benutzer b = dbEntities.Benutzers.Where(i => i.Username == username).Single();
             dbEntities.Haltestellens.ToList()[0].Name.Replace("\"", "");
             dbEntities.SaveChanges(); 
             if(b.Password == sha256(password))
             {
-                return true;
+                return b;
             }
-            return false;
+            return null;
         }
 
         public bool Signup(string username, string password, string firstname, string lastname)
@@ -44,6 +44,11 @@ namespace WienerLinienApi
             dbEntities.BenutzerHaltestellens.Add(bh);
             dbEntities.SaveChanges();
         }
+        public List<BenutzerHaltestellen> GetFavouriteStopsFromUser(Benutzer b)
+        {
+            return dbEntities.BenutzerHaltestellens.Where(i => i.Benutzer_ID == b.Benutzer_ID).ToList();
+        }
+        
         private string sha256(string password)
         {
             System.Security.Cryptography.SHA256Managed crypt = new System.Security.Cryptography.SHA256Managed();
