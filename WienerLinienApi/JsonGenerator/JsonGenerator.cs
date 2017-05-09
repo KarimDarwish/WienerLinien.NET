@@ -32,7 +32,8 @@ namespace WienerLinienApi.JsonGenerator
         private List<HaltestellenModel> Haltetellen { get; set; }
 
         private HttpClient client;
-        private Entities dbEntities = new Entities();
+        private Entities1 db
+            = new Entities1();
        
 
         #endregion

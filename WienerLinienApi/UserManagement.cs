@@ -8,7 +8,7 @@ namespace WienerLinienApi
 {
     public class UserManagement
     {
-        Entities dbEntities = new Entities();
+        Entities1 dbEntities = new Entities1();
 
         public Benutzer Login(string username, string password)
         {
@@ -38,9 +38,9 @@ namespace WienerLinienApi
             return !(dbEntities.Benutzers.Any(i => i.Username == username));
           
         }
-        public void AddStationToUser(Benutzer benutzerToAdd, Haltestellen haltestelleToMarkAsFavourite)
+        public void AddStationToUser(Benutzer benutzerToAdd, int HaltestellenId, string linie, string richtung)
         {
-            BenutzerHaltestellen bh = new BenutzerHaltestellen() { Benutzer_ID = benutzerToAdd.Benutzer_ID, Haltestellen_ID = haltestelleToMarkAsFavourite.Haltestellen_ID };
+            BenutzerHaltestellen bh = new BenutzerHaltestellen() { Benutzer_ID = benutzerToAdd.Benutzer_ID, Haltestellen_ID = HaltestellenId, Linie=linie, Richtung=richtung };
             dbEntities.BenutzerHaltestellens.Add(bh);
             dbEntities.SaveChanges();
         }

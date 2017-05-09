@@ -17,6 +17,8 @@ namespace WienerLinienApi
         public int BenutzerHaltestelle_ID { get; set; }
         public int Benutzer_ID { get; set; }
         public int Haltestellen_ID { get; set; }
+        public string Linie { get; set; }
+        public string Richtung { get; set; }
     
         public virtual Benutzer Benutzer { get; set; }
         public virtual Haltestellen Haltestellen { get; set; }

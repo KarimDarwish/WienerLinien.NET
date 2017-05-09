@@ -136,6 +136,9 @@
     </Compile>
     <Compile Include="Model\News.cs" />
     <Compile Include="Model\Parameters.cs" />
+    <Compile Include="Steige.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserManagement.cs" />
     <Compile Include="News\NewsWrapper.cs" />
     <Compile Include="RealtimeData\IParameter.cs" />
@@ -145,21 +148,21 @@
     <Compile Include="RealtimeData\RealtimeError.cs" />
     <Compile Include="Model\Station.cs" />
     <Compile Include="RealtimeData\TrafficInfo\TrafficInfoClasses.cs" />
-    <Compile Include="Steige.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="WienerLinienContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="DbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DbModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="DbModel.edmx.diagram">
       <DependentUpon>DbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DbModel.Context.tt">
@@ -172,9 +175,6 @@
       <DependentUpon>DbModel.edmx</DependentUpon>
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

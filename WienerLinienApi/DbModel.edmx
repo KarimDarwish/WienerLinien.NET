@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ewrlinienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WienerLinienModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Benutzer">
           <Key>
             <PropertyRef Name="Benutzer_ID" />
@@ -22,20 +22,22 @@
           <Property Name="BenutzerHaltestelle_ID" Type="int" Nullable="false" />
           <Property Name="Benutzer_ID" Type="int" Nullable="false" />
           <Property Name="Haltestellen_ID" Type="int" Nullable="false" />
+          <Property Name="Linie" Type="varchar" MaxLength="50" />
+          <Property Name="Richtung" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Haltestellen">
           <Key>
             <PropertyRef Name="Haltestellen_ID" />
           </Key>
           <Property Name="Haltestellen_ID" Type="int" Nullable="false" />
-          <Property Name="Typ" Type="varchar" MaxLength="50" />
+          <Property Name="Typ" Type="nvarchar" MaxLength="50" />
           <Property Name="Diva" Type="int" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Gemeinde" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gemeinde" Type="nvarchar" MaxLength="50" />
           <Property Name="Gemeinde_ID" Type="int" />
-          <Property Name="WGS84_LAT" Type="varchar" MaxLength="50" />
-          <Property Name="WGS84_LON" Type="varchar" MaxLength="50" />
-          <Property Name="Stand" Type="varchar" MaxLength="50" />
+          <Property Name="WGS84_LAT" Type="nvarchar" MaxLength="50" />
+          <Property Name="WGS84_LON" Type="nvarchar" MaxLength="50" />
+          <Property Name="Stand" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Linien">
           <Key>
@@ -112,7 +114,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ewrlinienModelStoreContainer">
+        <EntityContainer Name="WienerLinienModelStoreContainer">
           <EntitySet Name="Benutzer" EntityType="Self.Benutzer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BenutzerHaltestellen" EntityType="Self.BenutzerHaltestellen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Haltestellen" EntityType="Self.Haltestellen" Schema="dbo" store:Type="Tables" />
@@ -139,7 +141,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ewrlinienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="WienerLinienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Benutzer">
           <Key>
             <PropertyRef Name="Benutzer_ID" />
@@ -158,6 +160,8 @@
           <Property Name="BenutzerHaltestelle_ID" Type="Int32" Nullable="false" />
           <Property Name="Benutzer_ID" Type="Int32" Nullable="false" />
           <Property Name="Haltestellen_ID" Type="Int32" Nullable="false" />
+          <Property Name="Linie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Richtung" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Benutzer" Relationship="Self.Benutzer_FK" FromRole="BenutzerHaltestellen" ToRole="Benutzer" />
           <NavigationProperty Name="Haltestellen" Relationship="Self.FavoritHaltestellen_FK" FromRole="BenutzerHaltestellen" ToRole="Haltestellen" />
         </EntityType>
@@ -166,14 +170,14 @@
             <PropertyRef Name="Haltestellen_ID" />
           </Key>
           <Property Name="Haltestellen_ID" Type="Int32" Nullable="false" />
-          <Property Name="Typ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Typ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Diva" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Gemeinde" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gemeinde" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gemeinde_ID" Type="Int32" />
-          <Property Name="WGS84_LAT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WGS84_LON" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Stand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WGS84_LAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WGS84_LON" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Stand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BenutzerHaltestellen" Relationship="Self.FavoritHaltestellen_FK" FromRole="Haltestellen" ToRole="BenutzerHaltestellen" />
           <NavigationProperty Name="Steiges" Relationship="Self.Haltestellen_FK" FromRole="Haltestellen" ToRole="Steige" />
         </EntityType>
@@ -255,7 +259,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Benutzers" EntityType="Self.Benutzer" />
           <EntitySet Name="BenutzerHaltestellens" EntityType="Self.BenutzerHaltestellen" />
           <EntitySet Name="Haltestellens" EntityType="Self.Haltestellen" />
@@ -283,9 +287,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ewrlinienModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="WienerLinienModelStoreContainer" CdmEntityContainer="Entities1">
           <EntitySetMapping Name="Benutzers">
-            <EntityTypeMapping TypeName="ewrlinienModel.Benutzer">
+            <EntityTypeMapping TypeName="WienerLinienModel.Benutzer">
               <MappingFragment StoreEntitySet="Benutzer">
                 <ScalarProperty Name="Benutzer_ID" ColumnName="Benutzer_ID" />
                 <ScalarProperty Name="Vorname" ColumnName="Vorname" />
@@ -296,16 +300,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BenutzerHaltestellens">
-            <EntityTypeMapping TypeName="ewrlinienModel.BenutzerHaltestellen">
+            <EntityTypeMapping TypeName="WienerLinienModel.BenutzerHaltestellen">
               <MappingFragment StoreEntitySet="BenutzerHaltestellen">
                 <ScalarProperty Name="BenutzerHaltestelle_ID" ColumnName="BenutzerHaltestelle_ID" />
                 <ScalarProperty Name="Benutzer_ID" ColumnName="Benutzer_ID" />
                 <ScalarProperty Name="Haltestellen_ID" ColumnName="Haltestellen_ID" />
+                <ScalarProperty Name="Linie" ColumnName="Linie" />
+                <ScalarProperty Name="Richtung" ColumnName="Richtung" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Haltestellens">
-            <EntityTypeMapping TypeName="ewrlinienModel.Haltestellen">
+            <EntityTypeMapping TypeName="WienerLinienModel.Haltestellen">
               <MappingFragment StoreEntitySet="Haltestellen">
                 <ScalarProperty Name="Haltestellen_ID" ColumnName="Haltestellen_ID" />
                 <ScalarProperty Name="Typ" ColumnName="Typ" />
@@ -320,7 +326,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Liniens">
-            <EntityTypeMapping TypeName="ewrlinienModel.Linien">
+            <EntityTypeMapping TypeName="WienerLinienModel.Linien">
               <MappingFragment StoreEntitySet="Linien">
                 <ScalarProperty Name="Linien_ID" ColumnName="Linien_ID" />
                 <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
@@ -332,7 +338,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Steiges">
-            <EntityTypeMapping TypeName="ewrlinienModel.Steige">
+            <EntityTypeMapping TypeName="WienerLinienModel.Steige">
               <MappingFragment StoreEntitySet="Steige">
                 <ScalarProperty Name="Steig_Id" ColumnName="Steig_Id" />
                 <ScalarProperty Name="FK_Linien_ID" ColumnName="FK_Linien_ID" />
