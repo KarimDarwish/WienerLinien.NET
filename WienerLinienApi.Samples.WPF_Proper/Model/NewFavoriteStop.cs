@@ -99,7 +99,6 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
         public static string GetTimeForNextBus(string station, string line, string direction)
         {
             var time = Data.Data.Monitors.Where(i => i.Lines[0].Direction == direction && i.Lines[0].Name == line).ToList();
-            Console.WriteLine(time.Count);
             foreach (var v in time)
             {
                 Console.WriteLine(v.ToString());
