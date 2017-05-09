@@ -80,6 +80,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
                 if (b != null)
                 {
                     Background = new SolidColorBrush(Colors.LightGreen);
+                    MainWindow.loggedInBenutzer = b;
                     mW.changeToMain();
                 }
                 else

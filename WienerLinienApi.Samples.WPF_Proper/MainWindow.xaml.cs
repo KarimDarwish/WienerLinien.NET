@@ -23,6 +23,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Benutzer loggedInBenutzer;
         public MainWindow()
         {            
             InitializeComponent();

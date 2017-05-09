@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WienerLinienApi.Information;
+using WienerLinienApi.Samples.WPF_Proper.Model;
 using WienerLinienApi.Samples.WPF_Proper.View;
 
 namespace WienerLinienApi.Samples.WPF_Proper
@@ -24,6 +25,8 @@ namespace WienerLinienApi.Samples.WPF_Proper
     public partial class MainView : UserControl
     {
         public MainWindow mW { set; get; }
+        private Entities1 dbEntities = new Entities1();
+        private UserManagement userManagement = new UserManagement();
         public MainView(MainWindow ThisMainWindow)
         {
             mW = ThisMainWindow;
@@ -33,7 +36,7 @@ namespace WienerLinienApi.Samples.WPF_Proper
             //BusStopGrid1.Children.Add(test);
            
         }
-
+      
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             Storyboard sb = (this.FindResource("LoginAnimation") as Storyboard);
@@ -68,6 +71,23 @@ namespace WienerLinienApi.Samples.WPF_Proper
         {
             FavStopDialog dialog = new FavStopDialog(MeansOfTransport.Tram);
             dialog.ShowDialog();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var b = MainWindow.loggedInBenutzer;
+            if (b != null)
+            {
+                List<BenutzerHaltestellen> favourites = userManagement.GetFavouriteStopsFromUser(b);
+                List<UserControl> favouriteStops = new List<UserControl>();
+                foreach(var item in favourites)
+                {
+                    var station = NewFavoriteStop.GetStationFromId(item.Haltestellen_ID);
+                    UserControl test = new BusStopView(station.Name, item.Linie, item.Richtung);
+                    favouriteStops.Add(test);
+                }
+                Console.WriteLine(favouriteStops.Count);
+            }
         }
     }
 }

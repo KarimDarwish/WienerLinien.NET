@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:WienerLinienApi.Samples.WPF_Proper"
              xmlns:localm="clr-namespace:WienerLinienApi.Samples.WPF_Proper.Model"
              mc:Ignorable="d"
+             Loaded="UserControl_Loaded"
              d:DesignHeight="1440"
              d:DesignWidth="2560">
   <UserControl.Resources>

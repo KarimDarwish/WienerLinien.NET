@@ -38,6 +38,7 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TestItems"));
             }
         }
+        private Entities1 dbEntities = new Entities1();
 
         public List<string> LineNameColl { get; set; }
         public FavStopDialog(MeansOfTransport meanOfTrans)
@@ -72,7 +73,13 @@ namespace WienerLinienApi.Samples.WPF_Proper.View
             if (!string.IsNullOrEmpty(StopName.Text) && !string.IsNullOrEmpty(LineName.Text))
             {
                BSV = new BusStopView(StopName.Text, LineName.Text, Direction.Text);
-
+                var id = NewFavoriteStop.GetStationIdFromName(StopName.Text);
+                if (MainWindow.loggedInBenutzer != null)
+                {
+                    BenutzerHaltestellen bh = new BenutzerHaltestellen() { Benutzer_ID = MainWindow.loggedInBenutzer.Benutzer_ID, Haltestellen_ID = id, Linie = LineName.Text, Richtung = Direction.Text };
+                    dbEntities.BenutzerHaltestellens.Add(bh);
+                    dbEntities.SaveChanges();
+                }
             }
         }
 

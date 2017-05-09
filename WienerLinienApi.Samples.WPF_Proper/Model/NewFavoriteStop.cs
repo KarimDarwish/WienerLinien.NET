@@ -23,10 +23,14 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
         public static WienerLinienContext Context = new WienerLinienContext("O56IE8eH7Kf5R5aQ");
         private static List<Station> stations;
         private static MonitorData Data { get; set; }
+        private static Entities1 dbEntities = new Entities1();
 
         public static async Task<List<string>> GetStaionNames(MeansOfTransport type)
         {
-            stations = await Stations.GetAllStationsAsync();
+            if (stations == null)
+            {
+                stations = await Stations.GetAllStationsAsync();
+            }
             var mot = type;
             var listOfStations = (from v in stations
                                   from p in v.Platforms
@@ -34,13 +38,24 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
                                   select v.Name).Distinct().ToList();
             return listOfStations;
         }
+        public static Haltestellen GetStationFromId(int id)
+        {
+            
+            var a = dbEntities.Haltestellens.First(i => i.Haltestellen_ID== id);
+            return a;
+        }
+
+        public static int GetStationIdFromName(string name)
+        {
+            return stations.First(i => i.Name == name).StationId;
+        }
 
         public static async Task<List<string>> GetLinesFromStation(string station, MeansOfTransport type)
         {
             if (stations == null)
             {
                 stations = await Stations.GetAllStationsAsync();
-            }           
+            }
             var lines = (from v in stations
                          where v.Name.Equals(station)
                          from p in v.Platforms
@@ -77,14 +92,14 @@ namespace WienerLinienApi.Samples.WPF_Proper.Model
             var parameters = new Parameters.MonitorParameters() { Rbls = rbls };
             var monitorInfo = await rtd.GetMonitorDataAsync(parameters);
             Data = monitorInfo;
-            var strings = new  Dictionary<string, string>();
+            var strings = new Dictionary<string, string>();
             var b =
                 monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "R" && i.Lines[0].Name == line).ToList();
             if (b.Count > 0)
             {
                 strings.Add("R", ReplaceString(b.Select(i => i.Lines[0].Towards)
                     .ToList()
-                    .First()+ " "));
+                    .First() + " "));
             }
             var c =
                 monitorInfo.Data.Monitors.Where(i => i.Lines[0].Direction == "H" && i.Lines[0].Name == line).ToList();
