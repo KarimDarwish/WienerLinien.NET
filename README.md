@@ -10,7 +10,6 @@ Installation
 -------------
 
 The library is available via NuGet: 
-	
 
     PM> Install-Package WienerLinien.NET
     
@@ -28,9 +27,9 @@ Documentation
 **Get started:**
 
 First you need to create a WienerLinienContext classs where your API Key is stored.
-
+```cs
     var wlContext = new WienerLinienContext("yourApiKey");
-    
+```
 Then you can already start 
 
 As Wiener Linien don't provide all stations in their API, we had to grab them from their csv files and combine/parse them to JSON ourselves (see JsonGenerator folder).
@@ -38,12 +37,13 @@ As Wiener Linien don't provide all stations in their API, we had to grab them fr
 The stations are used to get the RBL Id for them, which is required to retrieve Realtime Data.
 
 To get all stations:
-
+```cs
     var allStations = await Stations.GetAllStationsAsync();
+```
 This will return a `List<Station>`, where you can get the RBL Id's using the Platform attribute.
 
 Now you can get realtime monitor information:
-
+```cs
       //initialize the RealtimeData object using the created context
     var rtd = new RealtimeData(context);
     
@@ -58,14 +58,14 @@ Now you can get realtime monitor information:
     
     //Get the planned arrival time for the first line and the next vehicle arriving (index at Departure)
     var plannedTime = monitorInfo.Result.Data.Monitors[0].Lines[0].Departures.Departure[0].DepartureTime.TimePlanned;
-
+```
 To receive current TrafficInformation (current failures like elevator and other interruptions), you need to use the `GetTrafficInformationAsync` method.
 
 As parameter you can choose either related lines or related stops as well as the type of failure.
 
 Sample code:
 
-        
+```cs
     //initialize the RealtimeData object using the created context
     var rtd = new RealtimeData.RealtimeData(context);
     
@@ -79,10 +79,10 @@ Sample code:
     
     //Get the first traffic warning related to your selected lines
     var firstNotice = monitorInfo.Data.TrafficInfos[0].Description;
-
+```
 Then there is the option to get current news related to the Wiener Linien:
 
-
+```cs
     //creating a new NewsWrapper object with your context
     var news = new NewsWrapper(context);
     
@@ -91,7 +91,7 @@ Then there is the option to get current news related to the Wiener Linien:
     
     /gets the first news item
     var firstNewsItem = newsInformation.DataObj.PoisObj[0].Description;
-
+```
 
 
 
@@ -133,6 +133,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
